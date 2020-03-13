@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{6FCB5ADC-426D-4BD1-9959-1B7A03821659}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <RootNamespace>SxqSDK</RootNamespace>
+    <CodePage>65001</CodePage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SxqCore\Bean\RequestPathConstant.cs" />
+    <Compile Include="SxqCore\Bean\Response\PageListResult!1.cs" />
+    <Compile Include="SxqCore\Bean\Response\PageUrlResult.cs" />
+    <Compile Include="SxqCore\Bean\Response\SdkResponse!1.cs" />
+    <Compile Include="SxqCore\Tools\HttpJsonConvert.cs" />
+    <Compile Include="SxqCore\Tools\ResponseUtils.cs" />
+    <Compile Include="SxqClient\Http\HttpClient.cs" />
+    <Compile Include="SxqClient\Http\HttpConnection.cs" />
+    <Compile Include="SxqClient\Http\HttpHeader.cs" />
+    <Compile Include="SxqClient\Http\HttpMethod.cs" />
+    <Compile Include="SxqClient\Http\HttpParamers.cs" />
+    <Compile Include="SxqClient\Http\SDKClient.cs" />
+    <Compile Include="SxqClient\Tools\IFileItem.cs" />
+    <Compile Include="SxqClient\Tools\IHttpRequest.cs" />
+    <Compile Include="SxqClient\Tools\StreamFile.cs" />
+    <Compile Include="SxqClient\Tools\StringUtils.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="SxqCore\Bean\Request\PingRequest.cs" />
+    <Compile Include="SxqCore\Bean\Response\PingResult.cs" />
+    <Compile Include="SxqCore\Bean\Quick\QuickContract.cs" />
+    <Compile Include="SxqCore\Bean\Quick\QuickDataStore.cs" />
+    <Compile Include="SxqCore\Bean\Quick\QuickSignatory.cs" />
+    <Compile Include="SxqCore\Tools\QuickSignUtil.cs" />
+    <Compile Include="SxqCore\Bean\Response\QuickSignResult.cs" />
+    <Compile Include="SxqCore\Bean\Request\QuickSignRequest.cs" />
+    <Compile Include="SxqCore\Bean\Request\FetchRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SxqCore\" />
+    <Folder Include="SxqClient\" />
+    <Folder Include="SxqCore\Bean\Quick\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
