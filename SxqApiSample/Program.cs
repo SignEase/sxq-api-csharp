@@ -64,20 +64,49 @@ namespace SxqApiSample
         /// <summary>
         /// 快捷签约
         /// </summary>
-        static private void QuickSignContract()
+        /// <param name="caseType">
+        /// 0: TwoPeopleSign;
+        /// 1: CompanyAndPersonSign;
+        /// 2: TwoCompanySign;
+        /// 3: MutiplePeopleSign;
+        /// 4: MutiplePartiesSign
+        /// </param>
+        static private void QuickSignContract(int signType)
         {
             QuickSignatorySample quickSignatorySample = new QuickSignatorySample();
-            quickSignatorySample.TwoPeopleSign(GetOrCreateClient());
-            //quickSignatorySample.MutiplePeopleSign(InitClient());
-            //quickSignatorySample.MutiplePartiesSign(InitClient());
+
+            switch (signType)
+            {
+                case 0:
+                    quickSignatorySample.TwoPeopleSign(GetOrCreateClient());
+                    break;
+                case 1:
+                    quickSignatorySample.CompanyAndPersonSign(GetOrCreateClient());
+                    break;
+                case 2:
+                    quickSignatorySample.TwoCompanySign(GetOrCreateClient());
+                    break;
+                case 3:
+                    quickSignatorySample.MutiplePeopleSign(GetOrCreateClient());
+                    break;
+                case 4:
+                    quickSignatorySample.MutiplePartiesSign(GetOrCreateClient());
+                    break;
+                default:
+                    break;
+            }
             Console.WriteLine("Call QucikSign api finished");
         }
 
         static void Main(string[] args)
         {
-            Ping();
+            //Ping();
             //Fetch();
-            //QuickSignContract();
+            //QuickSignContract(0);
+            //QuickSignContract(1);
+            //QuickSignContract(2);
+            //QuickSignContract(3);
+            QuickSignContract(4);
         }
         
     }

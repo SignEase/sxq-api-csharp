@@ -63,8 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Contract\BaseBoard\TwoPeople.pdf" />
     <None Include="Contract\Signed\ContractFetched.pdf" />
+    <None Include="Contract\BaseBoard\CompanyAndPerson.pdf" />
+    <None Include="Contract\BaseBoard\MutipleParties.pdf" />
+    <None Include="Contract\BaseBoard\MutiplePeople.pdf" />
+    <None Include="Contract\BaseBoard\TwoCompany.pdf" />
+    <None Include="Contract\BaseBoard\TwoPeople.pdf" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

@@ -8,25 +8,46 @@
 	/// </summary>
 	public class QuickSignatory
 	{
-        // 签章类型
-		public const string SEAL_PERSONAL = "PERSONAL"; //私章
-		public const string SEAL_ENTERPRISE = "OFFICIAL"; //公章
+		/** 签章类型 **/
+		/// <summary>
+		/// 私章
+		/// </summary>
+		public const string SEAL_PERSONAL = "PERSONAL";
+		/// <summary>
+		/// 公章
+		/// </summary>
+		public const string SEAL_ENTERPRISE = "OFFICIAL";
 
-        // 用户类型
-		public const string USER_PERSONAL = "PERSONAL"; //个人用户
-		public const string USER_ENTERPRISE = "ENTERPRISE"; //企业用户
+		/** 用户类型 **/
+		/// <summary>
+		/// 个人用户
+		/// </summary>
+		public const string USER_PERSONAL = "PERSONAL";
+		/// <summary>
+		/// 企业用户
+		/// </summary>
+		public const string USER_ENTERPRISE = "ENTERPRISE";
 
-		// 证件类型
-		public const string ID_PERSONAL_CARD = "ID"; //身份证
-		public const string ID_INSTITUTION_CODE = "INSTITUTION_CODE"; //组织机构代码证
-		public const string ID_BUSINESS_LICENCE = "BUSINESS_LICENCE"; //营业执照
+		/** 证件类型 **/
+		/// <summary>
+		/// 身份证
+		/// </summary>
+		public const string ID_PERSONAL_CARD = "ID";
+		/// <summary>
+		/// 组织机构代码证
+		/// </summary>
+		public const string ID_INSTITUTION_CODE = "INSTITUTION_CODE";
+		/// <summary>
+		/// 营业执照
+		/// </summary>
+		public const string ID_BUSINESS_LICENCE = "BUSINESS_LICENCE";
 
-		// 布尔值
+		/** 布尔值 **/
 		public const string BOOL_YES = "YES"; //是
 		public const string BOOL_IS = "IS"; //是
 		public const string BOOL_NO = "NO"; //否
 
-		// 签约组
+		/** 签约组 **/
 		public const string GROUP_A = "甲方";
 		public const string GROUP_B = "乙方";
 		public const string GROUP_C = "丙方";
