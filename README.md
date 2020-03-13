@@ -1,7 +1,7 @@
 # 省心签API-C# 接入文档
 
 本项目是Visual Studio工程，包含两个子模块`SxqApiSample`和`SxqSDK`。
-主要的使用示例都在`Pro[SxqApiSample.Program.cs](./SxqApiSample/Program.cs)`。
+主要的使用示例都在[Program.cs](./SxqApiSample/Program.cs)。
 
 ## 接入步骤
 1. 创建并登录省心签账户，[官网网址](https://sxqian.com)。
