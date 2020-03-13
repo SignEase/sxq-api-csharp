@@ -9,11 +9,11 @@ namespace SxqApiSample
 {
     class Program
     {
-        /** -开始联调前吗，请设置以下参数- **/
+        /** -开始联调前，请设置以下参数- **/
         private static int env = 0; // 0-测试&联调环境; 1-线上环境
-        public static string accessSecret = ""; // 0-测试&联调环境; 1-线上环境
-        public static string accessToken = ""; // 0-测试&联调环境; 1-线上环境
-        public static string serverUrl = ""; // 0-测试&联调环境; 1-线上环境
+        public static string accessSecret = "";
+        public static string accessToken = "";
+        public static string serverUrl = "";
         /** ------------------------  **/
 
         private static SDKClient client = null;
@@ -23,7 +23,6 @@ namespace SxqApiSample
             {
                 return client;
             }
-
             // 请使用你注册账户的Secrect; 否则会使用以下测试环境默认Secret
             accessSecret = string.IsNullOrEmpty(accessSecret) ? "3daca3b13ef04e7f8a751d74c8318a1f" : accessSecret;
             // 请使用你注册账户的Token; 否则会使用以下测试环境默认Token
