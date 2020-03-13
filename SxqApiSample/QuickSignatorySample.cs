@@ -333,7 +333,7 @@ namespace SxqApiSample
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public void MutiplePeopleSign(SDKClient client)
+        public void MultiplePeopleSign(SDKClient client)
         {
             QuickContract quickContract = new QuickContract();
 
@@ -344,8 +344,8 @@ namespace SxqApiSample
             //quickContract.RealNameMask = true;
 
             /** 需要签署的合同 **/
-            string contractPdfPath = CONTRACT_PATH_PREFIX + "MutiplePeople.pdf";
-            string contractName = "MutiplePeopleSign" + new Random().Next(100) + ".pdf@";
+            string contractPdfPath = CONTRACT_PATH_PREFIX + "MultiplePeople.pdf";
+            string contractName = "MultiplePeopleSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
             quickContract.PdfFileBase64 = contractName + contractBase64Str;
 
@@ -461,7 +461,7 @@ namespace SxqApiSample
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        public void MutiplePartiesSign(SDKClient client)
+        public void MultiplePartiesSign(SDKClient client)
         {
             QuickContract quickContract = new QuickContract();
 
@@ -472,8 +472,8 @@ namespace SxqApiSample
             //quickContract.RealNameMask = true;
 
             /** 需要签署的合同 **/
-            string contractPdfPath = CONTRACT_PATH_PREFIX + "MutipleParties.pdf";
-            string contractName = "MutiplePartiesSign" + new Random().Next(100) + ".pdf@";
+            string contractPdfPath = CONTRACT_PATH_PREFIX + "MultipleParties.pdf";
+            string contractName = "MultiplePartiesSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
             quickContract.PdfFileBase64 = contractName + contractBase64Str;
 

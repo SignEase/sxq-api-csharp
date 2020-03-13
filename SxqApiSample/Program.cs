@@ -67,8 +67,8 @@ namespace SxqApiSample
         /// 0: TwoPeopleSign;
         /// 1: CompanyAndPersonSign;
         /// 2: TwoCompanySign;
-        /// 3: MutiplePeopleSign;
-        /// 4: MutiplePartiesSign
+        /// 3: MultiplePeopleSign;
+        /// 4: MultiplePartiesSign
         /// </param>
         static private void QuickSignContract(int signType)
         {
@@ -86,10 +86,10 @@ namespace SxqApiSample
                     quickSignatorySample.TwoCompanySign(GetOrCreateClient());
                     break;
                 case 3:
-                    quickSignatorySample.MutiplePeopleSign(GetOrCreateClient());
+                    quickSignatorySample.MultiplePeopleSign(GetOrCreateClient());
                     break;
                 case 4:
-                    quickSignatorySample.MutiplePartiesSign(GetOrCreateClient());
+                    quickSignatorySample.MultiplePartiesSign(GetOrCreateClient());
                     break;
                 default:
                     break;

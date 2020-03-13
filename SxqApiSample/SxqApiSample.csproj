@@ -65,8 +65,8 @@
     <None Include="App.config" />
     <None Include="Contract\Signed\ContractFetched.pdf" />
     <None Include="Contract\BaseBoard\CompanyAndPerson.pdf" />
-    <None Include="Contract\BaseBoard\MutipleParties.pdf" />
-    <None Include="Contract\BaseBoard\MutiplePeople.pdf" />
+    <None Include="Contract\BaseBoard\MultipleParties.pdf" />
+    <None Include="Contract\BaseBoard\MultiplePeople.pdf" />
     <None Include="Contract\BaseBoard\TwoCompany.pdf" />
     <None Include="Contract\BaseBoard\TwoPeople.pdf" />
   </ItemGroup>
