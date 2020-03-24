@@ -1,4 +1,4 @@
-﻿namespace SxqCore.Bean.Quick
+﻿namespace SxqCore.Bean.Contract
 {
     using System;
     using System.Collections.Generic;
@@ -9,15 +9,15 @@
     public class Contract
     {
         // pdf文件的base64编码
-		private string pdfFileBase64;
-		// 所有签章签约人真实姓名打码
-		private bool realNameMask = false;
+		protected string pdfFileBase64;
+        // 所有签章签约人真实姓名打码
+        protected bool realNameMask = false;
         // 所有签章签约人证件号码打码
-		private bool certNoMask = false;
+        protected bool certNoMask = false;
         // 签约人集合
-        private List<QuickSignatory> signatoryList;
+        protected List<Signatory> signatoryList;
         // 签约的基础数据对象
-        private QuickDataStore dataStore;
+        protected DataStore dataStore;
 
         public Contract()
         {
@@ -60,7 +60,7 @@
             }
         }
 
-        public List<QuickSignatory> SignatoryList
+        public List<Signatory> SignatoryList
         {
             get
             {
@@ -72,7 +72,7 @@
             }
         }
 
-        public QuickDataStore DataStore
+        public DataStore DataStore
         {
             get
             {

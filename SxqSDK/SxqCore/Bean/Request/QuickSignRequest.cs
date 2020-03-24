@@ -2,7 +2,7 @@
 {
     using SxqClient.Http;
     using SxqClient.Tools;
-    using SxqCore.Bean.Quick;
+    using SxqCore.Bean.Contract;
     using System.Collections.Generic;
 
     public class QuickSignRequest : IHttpRequest
@@ -22,7 +22,7 @@
             paramers.AddParamer("yclDataStore.userBizNumber", this.quickContract.DataStore.UserBizNumber);
             paramers.AddParamer("pdfFileBase64", this.quickContract.PdfFileBase64);
 
-            List<QuickSignatory> signatoryList = this.quickContract.SignatoryList;
+            List<Signatory> signatoryList = this.quickContract.SignatoryList;
             for (int i = 0; i < signatoryList.Count; i++)
             {
                 if (this.quickContract.RealNameMask)

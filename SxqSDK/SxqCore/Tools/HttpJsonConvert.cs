@@ -7,14 +7,6 @@
 
     public class HttpJsonConvert
     {
-        public static T DeserializeObject<T>(string value)
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            return JsonConvert.DeserializeObject<T>(value, settings);
-        }
 
         public static SdkResponse<T> DeserializeResponse<T>(string value)
         {
@@ -53,6 +45,17 @@
             response.Result = local;
             return response;
         }
+
+        public static T DeserializeObject<T>(string value)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            return JsonConvert.DeserializeObject<T>(value, settings);
+        }
+
 
         public static string SerializeObject(object value)
         {

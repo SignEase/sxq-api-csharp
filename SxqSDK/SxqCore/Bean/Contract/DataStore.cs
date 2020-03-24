@@ -1,11 +1,11 @@
-﻿namespace SxqCore.Bean.Quick
+﻿namespace SxqCore.Bean.Contract
 {
 	using SxqCore.Tools;
 
     /// <summary>
     /// 快速签约的基础数据对象
     /// </summary>
-	public class QuickDataStore
+	public class DataStore
     {
 		public const string ACCESS_PRIVATE = "PRIVATE";
 		public const string ACCESS_PUBLIC = "PUBLIC";
@@ -21,6 +21,8 @@
 
 		// 使用的合同模板ID （非必填）
 		private long contractTemplateId;
+        // 本次签约的合同变量json格式串
+		private string contractVariable;
 		/** ***** **/
 
 		/** 扩展字段 
@@ -66,7 +68,7 @@
 		private string sign;
         **/
 
-		public QuickDataStore(string storeName, string transAbs, string isPublic)
+		public DataStore(string storeName, string transAbs, string isPublic)
 		{
 			this.userBizNumber = QuickSignUtil.GainNo();
 			this.storeName = storeName;
@@ -119,6 +121,30 @@
 			set
 			{
 				this.isPublic = value;
+			}
+		}
+
+		public long ContractTemplateId
+		{
+			get
+			{
+				return this.contractTemplateId;
+			}
+			set
+			{
+				this.contractTemplateId = value;
+			}
+		}
+
+        public string ContractVariable
+		{
+			get
+			{
+				return this.contractVariable;
+			}
+			set
+			{
+				this.contractVariable = value;
 			}
 		}
 	}

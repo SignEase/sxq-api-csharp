@@ -1,4 +1,4 @@
-﻿namespace SxqCore.Bean.Quick
+﻿namespace SxqCore.Bean.Contract
 {
 	using System;
 	using System.Collections.Generic;
@@ -6,7 +6,7 @@
 	/// <summary>
 	/// 快速签约的签约人对象
 	/// </summary>
-	public class QuickSignatory
+	public class Signatory
 	{
 		/** 签章类型 **/
 		/// <summary>
@@ -137,7 +137,7 @@
 			return groupDef;
 		}
 
-        public QuickSignatory() { }
+        public Signatory() { }
 
 		public string RealName
 		{

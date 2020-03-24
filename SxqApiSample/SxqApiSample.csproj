@@ -79,15 +79,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contract\" />
+    <Folder Include="Contract\BaseBoard\" />
+    <Folder Include="Contract\Signed\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SxqSDK\SxqSDK.csproj">
       <Project>{6FCB5ADC-426D-4BD1-9959-1B7A03821659}</Project>
       <Name>SxqSDK</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contract\" />
-    <Folder Include="Contract\BaseBoard\" />
-    <Folder Include="Contract\Signed\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

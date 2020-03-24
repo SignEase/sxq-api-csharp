@@ -2,7 +2,7 @@
 {
     using SxqClient.Http;
     using SxqClient.Tools;
-    using SxqCore.Bean.Quick;
+    using SxqCore.Bean.Contract;
     using System.Collections.Generic;
 
     public class DraftContractRequest : IHttpRequest

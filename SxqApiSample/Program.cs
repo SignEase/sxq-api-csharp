@@ -1,6 +1,6 @@
 using SxqClient.Http;
 using System;
-using SxqCore.Bean.Quick;
+using SxqCore.Bean.Contract;
 using SxqCore.Bean.Response;
 using SxqCore.Tools;
 using System.Collections.Generic;

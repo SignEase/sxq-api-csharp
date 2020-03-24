@@ -4,7 +4,7 @@ using SxqCore.Bean.Response;
 using SxqCore.Tools;
 using System;
 using SxqCore.Bean;
-using SxqCore.Bean.Quick;
+using SxqCore.Bean.Contract;
 using System.Collections.Generic;
 
 namespace SxqApiSample
@@ -37,19 +37,19 @@ namespace SxqApiSample
         /// <returns></returns>
         public void TwoPeopleSign(SDKClient client)
         {
-            QuickContract quickContract = new QuickContract();
+            Contract contract = new Contract();
 
             /** 全局掩码控制，如果设置为true，则所有的签约人都会遵守该掩码规则 **/
             //签章证件号是否掩码 （为true时后四位用 * 号代替）
-            //quickContract.CertNoMask = true;
+            //contract.CertNoMask = true;
             //签章姓名是否掩码 （为true时仅显示姓，其余的 * 号代替）
-            //quickContract.RealNameMask = true;
+            //contract.RealNameMask = true;
 
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "TwoPeople.pdf";
             string contractName = "TwoPeopleSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
-            quickContract.PdfFileBase64 = contractName + contractBase64Str;
+            contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
             // 签署名称
@@ -57,28 +57,28 @@ namespace SxqApiSample
             // 存证说明
             string transAbs = "两人签约示例";
             // 是否公开可见
-            string isPublic = QuickDataStore.ACCESS_PUBLIC;
-            QuickDataStore sxqDataStore = new QuickDataStore(storeName, transAbs, isPublic);
-            quickContract.DataStore = sxqDataStore;
+            string isPublic = DataStore.ACCESS_PUBLIC;
+            DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            contract.DataStore = sxqDataStore;
 
             /** 签约人1 **/
-            QuickSignatory sxqSignatory1 = new QuickSignatory();
+            Signatory sxqSignatory1 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory1.RealName = "张三";
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173333";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
-            sxqSignatory1.Group(QuickSignatory.GROUP_A);
+            sxqSignatory1.Group(Signatory.GROUP_A);
             // 签约人邮箱 选填
             //sxqSignatory1.Email = "888888@qq.com";
             // 签约人手机 选填
@@ -92,23 +92,23 @@ namespace SxqApiSample
 
 
             /** 签约人2 **/
-            QuickSignatory sxqSignatory2 = new QuickSignatory();
+            Signatory sxqSignatory2 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory2.RealName = "李四";
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702173444";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory2.Group(QuickSignatory.GROUP_B);
+            sxqSignatory2.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory2.Phone = "15923642222";
@@ -120,13 +120,13 @@ namespace SxqApiSample
             sxqSignatory2.SignaturePage = 1;
     
             /** 设置签约方集合 **/
-            List<QuickSignatory> sxqSignatorylist = new List<QuickSignatory>();
+            List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
-            quickContract.SignatoryList = sxqSignatorylist;
+            contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, quickContract);
+            Process(client, contract);
         }
 
         /// <summary>
@@ -136,19 +136,19 @@ namespace SxqApiSample
         /// <returns></returns>
         public void CompanyAndPersonSign(SDKClient client)
         {
-            QuickContract quickContract = new QuickContract();
+            Contract contract = new Contract();
 
             /** 全局掩码控制，如果设置为true，则所有的签约人都会遵守该掩码规则 **/
             //签章证件号是否掩码 （为true时后四位用 * 号代替）
-            //quickContract.CertNoMask = true;
+            //contract.CertNoMask = true;
             //签章姓名是否掩码 （为true时仅显示姓，其余的 * 号代替）
-            //quickContract.RealNameMask = true;
+            //contract.RealNameMask = true;
 
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "CompanyAndPerson.pdf";
             string contractName = "ConpamyAndPersonSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
-            quickContract.PdfFileBase64 = contractName + contractBase64Str;
+            contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
             // 签署名称
@@ -156,28 +156,28 @@ namespace SxqApiSample
             // 存证说明
             string transAbs = "企业和个人签约示例";
             // 是否公开可见
-            string isPublic = QuickDataStore.ACCESS_PUBLIC;
-            QuickDataStore sxqDataStore = new QuickDataStore(storeName, transAbs, isPublic);
-            quickContract.DataStore = sxqDataStore;
+            string isPublic = DataStore.ACCESS_PUBLIC;
+            DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            contract.DataStore = sxqDataStore;
 
             /** 签约人1 **/
-            QuickSignatory sxqSignatory1 = new QuickSignatory();
+            Signatory sxqSignatory1 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory1.RealName = "张三";
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
-            sxqSignatory1.Group(QuickSignatory.GROUP_A);
+            sxqSignatory1.Group(Signatory.GROUP_A);
             // 签约人邮箱 选填
             //sxqSignatory1.Email = "zjq115097475@qq.com";
             // 签约人手机 选填
@@ -191,26 +191,26 @@ namespace SxqApiSample
 
 
             /** 签约人2 **/
-            QuickSignatory sxqSignatory2 = new QuickSignatory();
+            Signatory sxqSignatory2 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory2.RealName = "省心签科技";
             // 签章类型 必填
-            sxqSignatory2.SealType = QuickSignatory.SEAL_ENTERPRISE;
+            sxqSignatory2.SealType = Signatory.SEAL_ENTERPRISE;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = QuickSignatory.USER_ENTERPRISE;
+            sxqSignatory2.SignatoryUserType = Signatory.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory2.Group(QuickSignatory.GROUP_B);
+            sxqSignatory2.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory2.Phone = "15123144444";
             //签约方证件号 选填
             sxqSignatory2.CertNo = "91500000MA5UCYU7DD";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = QuickSignatory.ID_INSTITUTION_CODE;
+            sxqSignatory2.CertType = Signatory.ID_INSTITUTION_CODE;
             //签章x坐标 （不填写时系统自动生成）
             sxqSignatory2.SignatureX = 377d;
             //签章y坐标 （不填写时系统自动生成）
@@ -219,13 +219,13 @@ namespace SxqApiSample
             sxqSignatory2.SignaturePage = 1;
 
             /** 设置签约方集合 **/
-            List<QuickSignatory> sxqSignatorylist = new List<QuickSignatory>();
+            List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
-            quickContract.SignatoryList = sxqSignatorylist;
+            contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, quickContract);
+            Process(client, contract);
         }
 
         /// <summary>
@@ -235,19 +235,19 @@ namespace SxqApiSample
         /// <returns></returns>
         public void TwoCompanySign(SDKClient client)
         {
-            QuickContract quickContract = new QuickContract();
+            Contract contract = new Contract();
 
             /** 全局掩码控制，如果设置为true，则所有的签约人都会遵守该掩码规则 **/
             //签章证件号是否掩码 （为true时后四位用 * 号代替）
-            //quickContract.CertNoMask = true;
+            //contract.CertNoMask = true;
             //签章姓名是否掩码 （为true时仅显示姓，其余的 * 号代替）
-            //quickContract.RealNameMask = true;
+            //contract.RealNameMask = true;
 
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "TwoCompany.pdf";
             string contractName = "TwoCompanySign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
-            quickContract.PdfFileBase64 = contractName + contractBase64Str;
+            contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
             // 签署名称
@@ -255,28 +255,28 @@ namespace SxqApiSample
             // 存证说明
             string transAbs = "企业和企业签约示例";
             // 是否公开可见
-            string isPublic = QuickDataStore.ACCESS_PUBLIC;
-            QuickDataStore sxqDataStore = new QuickDataStore(storeName, transAbs, isPublic);
-            quickContract.DataStore = sxqDataStore;
+            string isPublic = DataStore.ACCESS_PUBLIC;
+            DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            contract.DataStore = sxqDataStore;
 
             /** 签约人1 **/
-            QuickSignatory sxqSignatory1 = new QuickSignatory();
+            Signatory sxqSignatory1 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory1.RealName = "甲方公司";
             //签约方证件号 选填
             sxqSignatory1.CertNo = "91500000MA5UCYU7AA";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = QuickSignatory.ID_INSTITUTION_CODE;
+            sxqSignatory1.CertType = Signatory.ID_INSTITUTION_CODE;
             // 签章类型 必填
-            sxqSignatory1.SealType = QuickSignatory.SEAL_ENTERPRISE;
+            sxqSignatory1.SealType = Signatory.SEAL_ENTERPRISE;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = QuickSignatory.USER_ENTERPRISE;
+            sxqSignatory1.SignatoryUserType = Signatory.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
-            sxqSignatory1.Group(QuickSignatory.GROUP_A);
+            sxqSignatory1.Group(Signatory.GROUP_A);
             // 签约人邮箱 选填
             //sxqSignatory1.Email = "zjq115097475@qq.com";
             // 签约人手机 选填
@@ -290,23 +290,23 @@ namespace SxqApiSample
 
 
             /** 签约人2 **/
-            QuickSignatory sxqSignatory2 = new QuickSignatory();
+            Signatory sxqSignatory2 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory2.RealName = "乙方公司";
             //签约方证件号 选填
             sxqSignatory2.CertNo = "91500000MA5UCYU7BB";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = QuickSignatory.ID_INSTITUTION_CODE;
+            sxqSignatory2.CertType = Signatory.ID_INSTITUTION_CODE;
             // 签章类型 必填
-            sxqSignatory2.SealType = QuickSignatory.SEAL_ENTERPRISE;
+            sxqSignatory2.SealType = Signatory.SEAL_ENTERPRISE;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = QuickSignatory.USER_ENTERPRISE;
+            sxqSignatory2.SignatoryUserType = Signatory.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory2.Group(QuickSignatory.GROUP_B);
+            sxqSignatory2.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory2.Phone = "15123166666";
@@ -319,13 +319,13 @@ namespace SxqApiSample
 
 
             /** 设置签约方集合 **/
-            List<QuickSignatory> sxqSignatorylist = new List<QuickSignatory>();
+            List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
-            quickContract.SignatoryList = sxqSignatorylist;
+            contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, quickContract);
+            Process(client, contract);
         }
 
         /// <summary>
@@ -335,19 +335,19 @@ namespace SxqApiSample
         /// <returns></returns>
         public void MultiplePeopleSign(SDKClient client)
         {
-            QuickContract quickContract = new QuickContract();
+            Contract contract = new Contract();
 
             /** 全局掩码控制，如果设置为true，则所有的签约人都会遵守该掩码规则 **/
             //签章证件号是否掩码 （为true时后四位用 * 号代替）
-            //quickContract.CertNoMask = true;
+            //contract.CertNoMask = true;
             //签章姓名是否掩码 （为true时仅显示姓，其余的 * 号代替）
-            //quickContract.RealNameMask = true;
+            //contract.RealNameMask = true;
 
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "MultiplePeople.pdf";
             string contractName = "MultiplePeopleSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
-            quickContract.PdfFileBase64 = contractName + contractBase64Str;
+            contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
             // 签署名称
@@ -355,28 +355,28 @@ namespace SxqApiSample
             // 存证说明
             string transAbs = "多人签约示例";
             // 是否公开可见
-            string isPublic = QuickDataStore.ACCESS_PUBLIC;
-            QuickDataStore sxqDataStore = new QuickDataStore(storeName, transAbs, isPublic);
-            quickContract.DataStore = sxqDataStore;
+            string isPublic = DataStore.ACCESS_PUBLIC;
+            DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            contract.DataStore = sxqDataStore;
 
             /**签约人1 * */
-            QuickSignatory sxqSignatory1 = new QuickSignatory();
+            Signatory sxqSignatory1 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory1.RealName = "张三";
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
-            sxqSignatory1.Group(QuickSignatory.GROUP_A);
+            sxqSignatory1.Group(Signatory.GROUP_A);
             // 签约人邮箱 选填
             //sxqSignatory1.Email = "zjq115097475@qq.com";
             // 签约人手机 选填
@@ -390,23 +390,23 @@ namespace SxqApiSample
 
 
             /** 签约人2 **/
-            QuickSignatory sxqSignatory2 = new QuickSignatory();
+            Signatory sxqSignatory2 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory2.RealName = "乙方-李四";
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702171222";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory2.Group(QuickSignatory.GROUP_B);
+            sxqSignatory2.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory2.Phone = "15923641222";
@@ -418,23 +418,23 @@ namespace SxqApiSample
             sxqSignatory2.SignaturePage = 1;
 
             /** 签约人3 **/
-            QuickSignatory sxqSignatory3 = new QuickSignatory();
+            Signatory sxqSignatory3 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory3.RealName = "乙方-王五";
             //签约方证件号 选填
             sxqSignatory3.CertNo = "430511198702171333";
             //填了证件号就必选填证件类型
-            sxqSignatory3.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory3.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory3.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory3.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory3.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory3.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory3.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory3.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory3.Group(QuickSignatory.GROUP_B);
+            sxqSignatory3.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory3.Phone = "15923641333";
@@ -446,14 +446,14 @@ namespace SxqApiSample
             sxqSignatory3.SignaturePage = 1;
 
             /** 设置签约方集合 **/
-            List<QuickSignatory> sxqSignatorylist = new List<QuickSignatory>();
+            List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
             sxqSignatorylist.Add(sxqSignatory3);
-            quickContract.SignatoryList = sxqSignatorylist;
+            contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, quickContract);
+            Process(client, contract);
         }
 
         /// <summary>
@@ -463,19 +463,19 @@ namespace SxqApiSample
         /// <returns></returns>
         public void MultiplePartiesSign(SDKClient client)
         {
-            QuickContract quickContract = new QuickContract();
+            Contract contract = new Contract();
 
             /** 全局掩码控制，如果设置为true，则所有的签约人都会遵守该掩码规则 **/
             //签章证件号是否掩码 （为true时后四位用 * 号代替）
-            //quickContract.CertNoMask = true;
+            //contract.CertNoMask = true;
             //签章姓名是否掩码 （为true时仅显示姓，其余的 * 号代替）
-            //quickContract.RealNameMask = true;
+            //contract.RealNameMask = true;
 
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "MultipleParties.pdf";
             string contractName = "MultiplePartiesSign" + new Random().Next(100) + ".pdf@";
             string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
-            quickContract.PdfFileBase64 = contractName + contractBase64Str;
+            contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
             // 签署名称
@@ -483,28 +483,28 @@ namespace SxqApiSample
             // 存证说明
             string transAbs = "多方签约示例（每方可以有多个签约人）";
             // 是否公开可见
-            string isPublic = QuickDataStore.ACCESS_PUBLIC;
-            QuickDataStore sxqDataStore = new QuickDataStore(storeName, transAbs, isPublic);
-            quickContract.DataStore = sxqDataStore;
+            string isPublic = DataStore.ACCESS_PUBLIC;
+            DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            contract.DataStore = sxqDataStore;
 
             /** 签约方A-签约人1 **/
-            QuickSignatory sxqSignatory1 = new QuickSignatory();
+            Signatory sxqSignatory1 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory1.RealName = "甲方";
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
-            sxqSignatory1.Group(QuickSignatory.GROUP_A);
+            sxqSignatory1.Group(Signatory.GROUP_A);
             // 签约人邮箱 选填
             //sxqSignatory1.Email = "zjq115097475@qq.com";
             // 签约人手机 选填
@@ -518,23 +518,23 @@ namespace SxqApiSample
 
 
             /** 签约方B-签约人2 **/
-            QuickSignatory sxqSignatory2 = new QuickSignatory();
+            Signatory sxqSignatory2 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory2.RealName = "乙方-李四";
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702173111";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory2.Group(QuickSignatory.GROUP_B);
+            sxqSignatory2.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory2.Phone = "15923641222";
@@ -546,23 +546,23 @@ namespace SxqApiSample
             sxqSignatory2.SignaturePage = 1;
 
             /** 签约方B-签约人3 **/
-            QuickSignatory sxqSignatory3 = new QuickSignatory();
+            Signatory sxqSignatory3 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory3.RealName = "乙方-王五";
             //签约方证件号 选填
             sxqSignatory3.CertNo = "430511198702173222";
             //填了证件号就必选填证件类型
-            sxqSignatory3.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory3.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory3.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory3.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory3.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory3.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory3.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory3.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory3.Group(QuickSignatory.GROUP_B);
+            sxqSignatory3.Group(Signatory.GROUP_B);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory3.Phone = "15923641333";
@@ -574,23 +574,23 @@ namespace SxqApiSample
             sxqSignatory3.SignaturePage = 1;
 
             /** 签约方C-签约人4 **/
-            QuickSignatory sxqSignatory4 = new QuickSignatory();
+            Signatory sxqSignatory4 = new Signatory();
             // 签约人姓名 必填
             sxqSignatory4.RealName = "丙方";
             //签约方证件号 选填
             sxqSignatory4.CertNo = "430511198702173333";
             //填了证件号就必选填证件类型
-            sxqSignatory4.CertType = QuickSignatory.ID_PERSONAL_CARD;
+            sxqSignatory4.CertType = Signatory.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory4.SealType = QuickSignatory.SEAL_PERSONAL;
+            sxqSignatory4.SealType = Signatory.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory4.SignatoryAuto = QuickSignatory.BOOL_YES;
+            sxqSignatory4.SignatoryAuto = Signatory.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory4.SignatoryUserType = QuickSignatory.USER_PERSONAL;
+            sxqSignatory4.SignatoryUserType = Signatory.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory4.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
-            sxqSignatory4.Group(QuickSignatory.GROUP_C);
+            sxqSignatory4.Group(Signatory.GROUP_C);
             //签约人手机或邮箱 选填
             //		sxqSignatory2.Email = "888888@qq.com";
             sxqSignatory4.Phone = "15923641262";
@@ -602,15 +602,15 @@ namespace SxqApiSample
             sxqSignatory4.SignaturePage = 1;
 
             /** 设置签约方集合 **/
-            List<QuickSignatory> sxqSignatorylist = new List<QuickSignatory>();
+            List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
             sxqSignatorylist.Add(sxqSignatory3);
             sxqSignatorylist.Add(sxqSignatory4);
-            quickContract.SignatoryList = sxqSignatorylist;
+            contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, quickContract);
+            Process(client, contract);
         }
 
         
@@ -618,10 +618,10 @@ namespace SxqApiSample
         /// 发送并处理快捷签约请求
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="quickContract">签约的合同对象</param>
-        private void Process(SDKClient client, QuickContract quickContract)
+        /// <param name="contract">签约的合同对象</param>
+        private void Process(SDKClient client, Contract contract)
         {
-            QuickSignRequest request = new QuickSignRequest(quickContract);
+            DraftContractRequest request = new DraftContractRequest(contract);
             string response = null;
             try
             {
