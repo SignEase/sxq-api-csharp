@@ -4,26 +4,26 @@
     using SxqClient.Tools;
     using SxqCore.Bean;
 
-    public class FetchRequest : IHttpRequest
+    public class DownloadContractRequest : IHttpRequest
     {
-        private string storeNo;
+        private string contractId;
 
-        public FetchRequest() {}
+        public DownloadContractRequest() {}
 
-        public FetchRequest(string storeNo)
+        public DownloadContractRequest(string contractId)
         {
-            this.storeNo = storeNo;
+            this.contractId = contractId;
         }
 
         public HttpParamers GetHttpParamers()
         {
             HttpParamers paramers = HttpParamers.GetParamers();
-            paramers.AddParamer("storeNo", this.storeNo);
+            paramers.AddParamer("contractId", this.contractId);
             return paramers;
         }
 
         public string GetRequestPath() =>
-            RequestPathConstant.FETCH;
+            RequestPathConstant.DOWNLOAD_CONTRACT;
 
     }
 }

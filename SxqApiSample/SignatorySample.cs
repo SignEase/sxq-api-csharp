@@ -21,11 +21,11 @@ namespace SxqApiSample
 	/*******************************************************************************/
 
     /// <summary>
-    /// <para> # 快捷签署合同，目前支持：</para>
+    /// <para> # 签署合同，目前支持：</para>
     /// <para> - 多人签约：多个个体（企业或个人）之间进行签约 </para>
     /// <para> - 多方签约：多个签约方之间进行签约，每个签约方可以包含多名签署人 </para>
     /// </summary>
-    class QuickSignatorySample : BaseSample
+    class SignatorySample : BaseSample
     {
 
         private const string CONTRACT_PATH_PREFIX = "../../Contract/BaseBoard/";
@@ -639,7 +639,7 @@ namespace SxqApiSample
             }
             string DOWNLOAD_URL = client.ServerUrl + RequestPathConstant.DOWNLOAD_CONTRACT + "?appKey=" + client.AccessToken
                 + "&appSecret=" + client.AccessSecret + "&storeNo=" + signRS.Result.StoreNo;
-            Console.WriteLine("Contract No: {0} , you can download the file:\n a) call Program.cs#Fetch method with Store No {1}\n b) access URL in the Explorer: {2}\n",
+            Console.WriteLine("Contract No: {0} , you can fetch the file:\n a) call Program.cs#Fetch method with Contract No {1}\n b) access URL in the Explorer: {2}\n",
                 signRS.Result.StoreNo, signRS.Result.StoreNo, DOWNLOAD_URL);
         }
     }

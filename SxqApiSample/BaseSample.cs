@@ -40,12 +40,12 @@ namespace SxqApiSample
         /// 取回已签约/已存证文件
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="storeNo">合同存证编号</param>
+        /// <param name="contractId">合同编号</param>
         /// <param name="filePath">文件的保存路径</param>
         /// <returns></returns>
-        public void Fetch(SDKClient client, string storeNo, string filePath)
+        public void Fetch(SDKClient client, string contractId, string filePath)
         {
-            FetchRequest request = new FetchRequest(storeNo);
+            DownloadContractRequest request = new DownloadContractRequest(contractId);
             try
             {
                 Stream outputStream = new MemoryStream();

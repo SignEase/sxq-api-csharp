@@ -5,8 +5,14 @@
     public class RequestPathConstant
     {
         public static string PING = "/api/ping.json";
-        public static string FETCH = "/api/fileNotary.json";
+        public static string DOWNLOAD_CONTRACT = "/api/fileNotary.json";
         public static string QUICK_SIGNATORY = "/api/signatory.json";
+        public static string DRAFT_CONTRACT = "/api/draftContract.json";
+        public static string SIGN_CONTRACT = "/api/signContract.json";
+        public static string FETCH_SIGN_URL = "/api/fetchSignUrl.json";
+        public static string QUERY_CONTRACT = "/api/queryContract.json";
+        public static string QUERY_AUDIT_FLOW = "/api/queryAuditFlow.json";
+        public static string CREATE_OR_UPDATE_AUDIT_FLOW = "/api/createOrUpdateAuditFlow.json";
 
         /** Not open now
         public static string CREATE_CONTRACT_DRAFT = "/v2/contract/draft";

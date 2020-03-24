@@ -40,18 +40,22 @@
     <Compile Include="Program.cs" />
     <Compile Include="SxqCore\Bean\Request\PingRequest.cs" />
     <Compile Include="SxqCore\Bean\Response\PingResult.cs" />
-    <Compile Include="SxqCore\Bean\Quick\QuickContract.cs" />
+    <Compile Include="SxqCore\Bean\Quick\Contract.cs" />
     <Compile Include="SxqCore\Bean\Quick\QuickDataStore.cs" />
     <Compile Include="SxqCore\Bean\Quick\QuickSignatory.cs" />
     <Compile Include="SxqCore\Tools\QuickSignUtil.cs" />
     <Compile Include="SxqCore\Bean\Response\QuickSignResult.cs" />
     <Compile Include="SxqCore\Bean\Request\QuickSignRequest.cs" />
-    <Compile Include="SxqCore\Bean\Request\FetchRequest.cs" />
+    <Compile Include="SxqCore\Bean\Request\DownloadContractRequest.cs" />
+    <Compile Include="SxqCore\Bean\Request\DraftContractRequest.cs" />
+    <Compile Include="SxqCore\Bean\Request\QueryContractRequest.cs" />
+    <Compile Include="SxqCore\Bean\Quick\QuickContract.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SxqCore\" />
     <Folder Include="SxqClient\" />
     <Folder Include="SxqCore\Bean\Quick\" />
+    <Folder Include="SxqCore\Bean\Contract\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
