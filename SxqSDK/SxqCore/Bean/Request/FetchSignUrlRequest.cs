@@ -4,13 +4,11 @@
     using SxqClient.Tools;
     using SxqCore.Bean;
 
-    public class QueryContractRequest : IHttpRequest
+    public class FetchSignUrlRequest : IHttpRequest
     {
         private string contractId;
 
-        public QueryContractRequest() {}
-
-        public QueryContractRequest(string contractId)
+        public FetchSignUrlRequest(string contractId)
         {
             this.contractId = contractId;
         }
@@ -19,13 +17,14 @@
         {
             HttpParamers paramers = HttpParamers.GetParamers();
             paramers.AddParamer("contractId", this.contractId);
-            return paramers;
+            return HttpParamers.PostParamers();
         }
 
         public string GetRequestPath() =>
-            RequestPathConstant.QUERY_CONTRACT;
+            RequestPathConstant.FETCH_SIGN_URL;
 
     }
 }
+
 
 

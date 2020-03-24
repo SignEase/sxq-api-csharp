@@ -11,6 +11,8 @@ namespace SxqApiSample
 {
 
     /********************************** 注意 ***************************************/
+    /** 签约流程：起草签约 -> 获取返回的签约URL -> 浏览器打开URL继续签约
+    /**
     /** #1 需要注意如果签约人设置了手机号或邮箱的，会作为账户的唯一标识：
  	/** a）如果该标识找到已存在账户的，会直接使用已存在账户下的信息进行签约，如：实名信息。
  	/** b）如果该标识没有查找到已存在账户的，则会用设置的信息创建新的账户信息，并完成签合约。
@@ -34,8 +36,8 @@ namespace SxqApiSample
         /// 甲乙两人签约
         /// </summary>
         /// <param name="client"></param>
-        /// <returns></returns>
-        public void TwoPeopleSign(SDKClient client)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string TwoPeopleSign(SDKClient client)
         {
             Contract contract = new Contract();
 
@@ -59,6 +61,18 @@ namespace SxqApiSample
             // 是否公开可见
             string isPublic = DataStore.ACCESS_PUBLIC;
             DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
+            // 签约变量集合
+            List<ContractVariable> variablelist = new List<ContractVariable>();
+            ContractVariable variable = new ContractVariable();
+            variable.Label = "签约变量A";
+            variable.PositionY = 20d;
+            variable.PositionX = 20d;
+            variable.PageNumber = 1;
+            variable.Content = "橘猫科技有限公司";
+            variable.ContentType = ContractVariable.TYEP_TEXT;
+            variablelist.Add(variable);
+            sxqDataStore.SetContractVariables(variablelist);
+
             contract.DataStore = sxqDataStore;
 
             /** 签约人1 **/
@@ -125,16 +139,16 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory2);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 快捷签约请求 **/
-            Process(client, contract);
+            /** 签约请求 **/
+            return Process(client, contract);
         }
 
         /// <summary>
         /// 企业和个人签约
         /// </summary>
         /// <param name="client"></param>
-        /// <returns></returns>
-        public void CompanyAndPersonSign(SDKClient client)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string CompanyAndPersonSign(SDKClient client)
         {
             Contract contract = new Contract();
 
@@ -225,15 +239,15 @@ namespace SxqApiSample
             contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, contract);
+            return Process(client, contract);
         }
 
         /// <summary>
         /// 企业和企业签约
         /// </summary>
         /// <param name="client"></param>
-        /// <returns></returns>
-        public void TwoCompanySign(SDKClient client)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string TwoCompanySign(SDKClient client)
         {
             Contract contract = new Contract();
 
@@ -325,15 +339,15 @@ namespace SxqApiSample
             contract.SignatoryList = sxqSignatorylist;
 
             /** 快捷签约请求 **/
-            Process(client, contract);
+            return Process(client, contract);
         }
 
         /// <summary>
         /// 多人人签约
         /// </summary>
         /// <param name="client"></param>
-        /// <returns></returns>
-        public void MultiplePeopleSign(SDKClient client)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string MultiplePeopleSign(SDKClient client)
         {
             Contract contract = new Contract();
 
@@ -452,16 +466,16 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory3);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 快捷签约请求 **/
-            Process(client, contract);
+            /** 签约请求 **/
+            return Process(client, contract);
         }
 
         /// <summary>
         /// 多方签约，每个签约方支持多个签约人
         /// </summary>
         /// <param name="client"></param>
-        /// <returns></returns>
-        public void MultiplePartiesSign(SDKClient client)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string MultiplePartiesSign(SDKClient client)
         {
             Contract contract = new Contract();
 
@@ -609,17 +623,18 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory4);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 快捷签约请求 **/
-            Process(client, contract);
+            /** 签约请求 **/
+            return Process(client, contract);
         }
 
-        
+
         /// <summary>
         /// 发送并处理快捷签约请求
         /// </summary>
         /// <param name="client"></param>
         /// <param name="contract">签约的合同对象</param>
-        private void Process(SDKClient client, Contract contract)
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string Process(SDKClient client, Contract contract)
         {
             DraftContractRequest request = new DraftContractRequest(contract);
             string response = null;
@@ -629,18 +644,18 @@ namespace SxqApiSample
             }
             catch (Exception e)
             {
-                throw new Exception("快捷签约合同失败,失败原因： " + e.Message);
+                throw new Exception("起草签约失败, 失败原因： " + e.Message);
             }
 
-            SdkResponse<QuickSignResult> signRS = HttpJsonConvert.DeserializeResponse<QuickSignResult>(response);
+            SdkResponse<SignResult> signRS = HttpJsonConvert.DeserializeResponse<SignResult>(response);
             if (!signRS.Success)
             {
-                throw new Exception("快捷签约合同失败，失败原因： " + signRS.Message);
+                throw new Exception("起草签约失败, 失败原因： " + signRS.Message);
             }
-            string DOWNLOAD_URL = client.ServerUrl + RequestPathConstant.DOWNLOAD_CONTRACT + "?appKey=" + client.AccessToken
-                + "&appSecret=" + client.AccessSecret + "&storeNo=" + signRS.Result.StoreNo;
-            Console.WriteLine("Contract No: {0} , you can fetch the file:\n a) call Program.cs#Fetch method with Contract No {1}\n b) access URL in the Explorer: {2}\n",
-                signRS.Result.StoreNo, signRS.Result.StoreNo, DOWNLOAD_URL);
+            Console.WriteLine("Contract No: {0} , you can access URL in the Explorer to continue the contract signing:\n {1}\n",
+                signRS.Result.ContractId, signRS.Result.SignUrl);
+
+            return signRS.Result.SignUrl;
         }
     }
 }

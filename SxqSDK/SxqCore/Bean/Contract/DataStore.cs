@@ -1,6 +1,7 @@
 ﻿namespace SxqCore.Bean.Contract
 {
-	using SxqCore.Tools;
+    using System.Collections.Generic;
+    using SxqCore.Tools;
 
     /// <summary>
     /// 快速签约的基础数据对象
@@ -25,7 +26,7 @@
 		private string contractVariable;
 		/** ***** **/
 
-		/** 扩展字段 
+		/** 扩展字段-暂未启用
 		private long storeId;
         // 数据拥有者ID
 		private long ownerId;
@@ -73,7 +74,12 @@
 			this.userBizNumber = QuickSignUtil.GainNo();
 			this.storeName = storeName;
 			this.transAbs = transAbs;
-			this.isPublic = isPublic;
+            this.isPublic = isPublic;
+		}
+
+        public void SetContractVariables(List<ContractVariable> variableList)
+        {
+			this.contractVariable = HttpJsonConvert.SerializeObject(variableList);
 		}
 
 		public string UserBizNumber

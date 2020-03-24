@@ -212,5 +212,5 @@ https://mock.sxqian.com/api/fileNotary.json?appKey=%E6%82%A8%E7%9A%84appKey
 
 
 ##### *示例代码*
-请参见 [Program.cs#Fetch](./SxqApiSample/Program.cs#Fetch)
+请参见 [Program.cs#Download](./SxqApiSample/Program.cs#Download)
 

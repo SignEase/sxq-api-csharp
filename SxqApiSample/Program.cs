@@ -47,7 +47,7 @@ namespace SxqApiSample
         /// <summary>
         /// 取回已签约/存证的合同
         /// </summary>
-        static private void Fetch()
+        static private void Download()
         {
             // 合同签约后返回的合同存证编号
             //string storeNo = "YC0001046440";
@@ -56,8 +56,8 @@ namespace SxqApiSample
             string localFilePath = "../../Contract/Signed/ContractFetched.pdf";
             BaseSample baseSample = new BaseSample();
             baseSample.Fetch(GetOrCreateClient(), storeNo, localFilePath);
-            Console.WriteLine("Fetch file success, you can find the file at {0}" , localFilePath);
-            Console.WriteLine("Call Fetch api finished");
+            Console.WriteLine("Download file success, you can find the file at {0}" , localFilePath);
+            Console.WriteLine("Call Download api finished");
         }
 
         /// <summary>
@@ -106,29 +106,31 @@ namespace SxqApiSample
         /// </param>
         static private void SignContract(int signType)
         {
-            QuickSignatorySample quickSignatorySample = new QuickSignatorySample();
-
+            SignatorySample sgnatorySample = new SignatorySample();
+            string signUrl = null;
             switch (signType)
             {
                 case 0:
-                    quickSignatorySample.TwoPeopleSign(GetOrCreateClient());
+                    signUrl = sgnatorySample.TwoPeopleSign(GetOrCreateClient());
                     break;
                 case 1:
-                    quickSignatorySample.CompanyAndPersonSign(GetOrCreateClient());
+                    signUrl = sgnatorySample.CompanyAndPersonSign(GetOrCreateClient());
                     break;
                 case 2:
-                    quickSignatorySample.TwoCompanySign(GetOrCreateClient());
+                    signUrl = sgnatorySample.TwoCompanySign(GetOrCreateClient());
                     break;
                 case 3:
-                    quickSignatorySample.MultiplePeopleSign(GetOrCreateClient());
+                    signUrl = sgnatorySample.MultiplePeopleSign(GetOrCreateClient());
                     break;
                 case 4:
-                    quickSignatorySample.MultiplePartiesSign(GetOrCreateClient());
+                    signUrl = sgnatorySample.MultiplePartiesSign(GetOrCreateClient());
                     break;
                 default:
                     break;
             }
-            Console.WriteLine("Call QucikSign api finished");
+            // use the explorer to open the sign url
+            System.Diagnostics.Process.Start(signUrl);
+            Console.WriteLine("Call SignContract api finished");
         }
 
         static void Main(string[] args)
@@ -139,7 +141,9 @@ namespace SxqApiSample
             //QuickSignContract(1);
             //QuickSignContract(2);
             //QuickSignContract(3);
-            QuickSignContract(4);
+            //QuickSignContract(4);
+
+            SignContract(0);
         }
         
     }

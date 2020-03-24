@@ -16,11 +16,12 @@
             HttpWebRequest request1 = (HttpWebRequest) WebRequest.Create(url);
             request1.Method = method.ToString();
             request1.Accept = "text/plain,application/json";
-            request1.UserAgent = "qiyuesuo-java-sdk";
+            request1.UserAgent = "sxq-csharp-sdk";
             request1.Headers.Set("Accept-Encoding", "gzip,deflate");
-            request1.Headers.Add("x-qys-open-timestamp", header.Timestamp.ToString());
-            request1.Headers.Add("x-qys-open-signature", header.Signature.ToLower());
-            request1.Headers.Add("x-qys-open-accesstoken", header.AccessToken);
+            request1.Headers.Add("x-sxq-open-timestamp", header.Timestamp.ToString());
+            request1.Headers.Add("x-sxq-open-signature", header.Signature.ToLower());
+            request1.Headers.Add("x-sxq-open-accesstoken", header.AccessToken);
+            request1.Headers.Add("x-sxq-open-accesssecret", header.AccessSecret);
             request1.Headers.Add("version", header.Version);
             return request1;
         }

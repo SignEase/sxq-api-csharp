@@ -8,8 +8,15 @@
     /// </summary>
     public class Contract
     {
+
+        public const string PHASE_ORIGINAL = "ORIGINAL";        //未签约
+        public const string PHASE_INVALID = "INVALID";          //失效
+        public const string PHASE_SIGNED = "SIGNED";            //已签约
+        public const string MUL_PHASE_WAIT = "WAIT";             //多阶段签-等待履约
+        public const string MUL_PHASE_INPROGRESS = "INPROGRESS"; //多阶段签-正在履行
+
         // pdf文件的base64编码
-		protected string pdfFileBase64;
+        protected string pdfFileBase64;
         // 所有签章签约人真实姓名打码
         protected bool realNameMask = false;
         // 所有签章签约人证件号码打码

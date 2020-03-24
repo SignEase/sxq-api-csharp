@@ -56,7 +56,7 @@
             double totalMilliseconds = DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds;
             byte[] inBytes = new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(this.AccessToken + this.AccessSecret + totalMilliseconds.ToString()));
             string signature = StringUtils.ByteToString(inBytes, inBytes.Length);
-            HttpHeader header = new HttpHeader(this.AccessToken, totalMilliseconds, signature, this.VERSION);
+            HttpHeader header = new HttpHeader(this.AccessToken, this.AccessSecret, totalMilliseconds, signature, this.VERSION);
             PolyfixOfOldDownloadApi(ref paramers);
             try
             {
@@ -75,7 +75,7 @@
             double totalMilliseconds = DateTime.Now.Subtract(DateTime.Parse("1970-1-1")).TotalMilliseconds;
             byte[] inBytes = new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(this.AccessToken + this.AccessSecret + totalMilliseconds.ToString()));
             string signature = StringUtils.ByteToString(inBytes, inBytes.Length);
-            HttpHeader header = new HttpHeader(this.AccessToken, totalMilliseconds, signature, this.VERSION);
+            HttpHeader header = new HttpHeader(this.AccessToken, this.AccessSecret, totalMilliseconds, signature, this.VERSION);
             PolyfixOfOldApi(ref paramers);
             try
             {

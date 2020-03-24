@@ -7,12 +7,14 @@
         private string contentType;
         private double timestamp;
         private string accessToken;
+        private string accessSecret;
         private string signature;
         private string version;
 
-        public HttpHeader(string accessToken, double timestamp, string signature, string version)
+        public HttpHeader(string accessToken,string accessSecret, double timestamp, string signature, string version)
         {
             this.AccessToken = accessToken;
+            this.AccessSecret = accessSecret;
             this.Timestamp = timestamp;
             this.Signature = signature;
             this.Version = version;
@@ -51,6 +53,18 @@
             set
             {
                 this.accessToken = value;
+            }
+        }
+
+        public string AccessSecret
+        {
+            get
+            {
+                return this.accessSecret;
+            }
+            set
+            {
+                this.accessSecret = value;
             }
         }
 

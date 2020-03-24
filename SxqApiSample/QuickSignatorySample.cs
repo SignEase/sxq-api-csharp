@@ -632,15 +632,15 @@ namespace SxqApiSample
                 throw new Exception("快捷签约合同失败,失败原因： " + e.Message);
             }
 
-            SdkResponse<QuickSignResult> signRS = HttpJsonConvert.DeserializeResponse<QuickSignResult>(response);
+            SdkResponse<SignResult> signRS = HttpJsonConvert.DeserializeResponse<SignResult>(response);
             if (!signRS.Success)
             {
                 throw new Exception("快捷签约合同失败，失败原因： " + signRS.Message);
             }
             string DOWNLOAD_URL = client.ServerUrl + RequestPathConstant.DOWNLOAD_CONTRACT + "?appKey=" + client.AccessToken
-                + "&appSecret=" + client.AccessSecret + "&storeNo=" + signRS.Result.StoreNo;
+                + "&appSecret=" + client.AccessSecret + "&storeNo=" + signRS.Result.ContractId;
             Console.WriteLine("Contract No: {0} , you can download the file:\n a) call Program.cs#Fetch method with Store No {1}\n b) access URL in the Explorer: {2}\n",
-                signRS.Result.StoreNo, signRS.Result.StoreNo, DOWNLOAD_URL);
+                signRS.Result.ContractId, signRS.Result.ContractId, DOWNLOAD_URL);
         }
     }
 }
