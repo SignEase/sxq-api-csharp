@@ -104,7 +104,7 @@ namespace SxqApiSample
         /// </summary>
         /// <param name="client"></param>
         /// <param name="quickContract">签约的合同对象</param>
-        private void Process(SDKClient client, QuickContract quickContract)
+        private new void Process(SDKClient client, Contract quickContract)
         {
             QuickSignRequest request = new QuickSignRequest(quickContract);
             string response = null;

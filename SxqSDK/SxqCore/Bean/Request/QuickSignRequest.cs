@@ -7,9 +7,9 @@
 
     public class QuickSignRequest : IHttpRequest
     {
-        private QuickContract quickContract;
+        private Contract quickContract;
 
-        public QuickSignRequest(QuickContract quickContract)
+        public QuickSignRequest(Contract quickContract)
         {
             this.quickContract = quickContract;
         }

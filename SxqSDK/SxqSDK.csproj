@@ -48,7 +48,6 @@
     <Compile Include="SxqCore\Bean\Request\QueryContractRequest.cs" />
     <Compile Include="SxqCore\Bean\Contract\Contract.cs" />
     <Compile Include="SxqCore\Bean\Contract\DataStore.cs" />
-    <Compile Include="SxqCore\Bean\Contract\QuickContract.cs" />
     <Compile Include="SxqCore\Bean\Contract\Signatory.cs" />
     <Compile Include="SxqCore\Bean\Contract\ContractVariable.cs" />
     <Compile Include="SxqCore\Tools\ParameterWrapper.cs" />

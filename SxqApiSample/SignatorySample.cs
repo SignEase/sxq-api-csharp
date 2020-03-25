@@ -3,7 +3,6 @@ using SxqCore.Bean.Request;
 using SxqCore.Bean.Response;
 using SxqCore.Tools;
 using System;
-using SxqCore.Bean;
 using SxqCore.Bean.Contract;
 using System.Collections.Generic;
 
@@ -50,14 +49,14 @@ namespace SxqApiSample
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
-            // 签署名称
+            // 签约名称
             string storeName = "两人签约";
             // 存证说明
             string transAbs = "两人签约示例";
             // 是否公开可见
             string isPublic = DataStore.ACCESS_PUBLIC;
             DataStore sxqDataStore = new DataStore(storeName, transAbs, isPublic);
-            // 签约变量集合
+            // 本次签约变量集合
             List<ContractVariable> variablelist = new List<ContractVariable>();
             ContractVariable variable = new ContractVariable();
             variable.Label = "签约变量A";
@@ -81,8 +80,6 @@ namespace SxqApiSample
             sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -111,8 +108,6 @@ namespace SxqApiSample
             sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -174,8 +169,6 @@ namespace SxqApiSample
             sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -200,8 +193,6 @@ namespace SxqApiSample
             sxqSignatory2.RealName = "省心签科技";
             // 签章类型 必填
             sxqSignatory2.SealType = SxqConst.SEAL_ENTERPRISE;
-            // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory2.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
@@ -268,8 +259,6 @@ namespace SxqApiSample
             sxqSignatory1.CertType = SxqConst.ID_INSTITUTION_CODE;
             // 签章类型 必填
             sxqSignatory1.SealType = SxqConst.SEAL_ENTERPRISE;
-            // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory1.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
@@ -298,8 +287,6 @@ namespace SxqApiSample
             sxqSignatory2.CertType = SxqConst.ID_INSTITUTION_CODE;
             // 签章类型 必填
             sxqSignatory2.SealType = SxqConst.SEAL_ENTERPRISE;
-            // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory2.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
@@ -362,8 +349,6 @@ namespace SxqApiSample
             sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -392,8 +377,6 @@ namespace SxqApiSample
             sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -420,8 +403,6 @@ namespace SxqApiSample
             sxqSignatory3.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory3.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory3.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -484,8 +465,6 @@ namespace SxqApiSample
             sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -514,8 +493,6 @@ namespace SxqApiSample
             sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -542,8 +519,6 @@ namespace SxqApiSample
             sxqSignatory3.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory3.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory3.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
@@ -570,8 +545,6 @@ namespace SxqApiSample
             sxqSignatory4.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
             sxqSignatory4.SealType = SxqConst.SEAL_PERSONAL;
-            // 是否自动签约 必填
-            sxqSignatory4.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
             sxqSignatory4.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
