@@ -1,23 +1,20 @@
 using SxqClient.Http;
 using System;
-using SxqCore.Bean.Contract;
 using SxqCore.Bean.Response;
-using SxqCore.Tools;
-using System.Collections.Generic;
 
 namespace SxqApiSample
 {
     class Program
     {
+
         /** -开始联调前，请设置以下参数- **/
-        private static int env = 0; // 0-测试&联调环境; 1-线上环境
+        private static int env = ENV_MOCK; 
         public static string accessSecret = "";
         public static string accessToken = "";
-        public static string serverUrl = "";
         /** ------------------------  **/
 
         private static SDKClient client = null;
-        static private SDKClient GetOrCreateClient()
+        private static SDKClient GetOrCreateClient()
         {
             if(client != null)
             {
@@ -28,9 +25,37 @@ namespace SxqApiSample
             // 请使用你注册账户的Token; 否则会使用以下测试环境默认Token
             accessToken = string.IsNullOrEmpty(accessToken) ? "20200303093507658157" : accessToken; 
             // 指定访问的服务器
-            serverUrl = (env == 0) ? "https://mock.sxqian.com" : "https://sxqian.com";
+            string serverUrl = ParseServer(env);
             
             return client = new SDKClient(accessToken, accessSecret, serverUrl); 
+        }
+
+        /// <summary>
+        /// 开发环境
+        /// </summary>
+        private const int ENV_DEV = 1;
+        /// <summary>
+        /// 联调环境
+        /// </summary>
+        private const int ENV_MOCK = 2;
+        /// <summary>
+        /// 正式环境
+        /// </summary>
+        private const int ENV_ONLINE = 3;
+
+        private static string ParseServer(int env)
+        {
+            switch (env)
+            {
+                case ENV_DEV:
+                    return "http://127.0.0.1:7878";
+                case ENV_MOCK:
+                    return "https://mock.sxqian.com";
+                case ENV_ONLINE:
+                    return "https://sxqian.com";
+                default:
+                    return "";
+            }
         }
 
         /// <summary>
@@ -61,14 +86,31 @@ namespace SxqApiSample
         }
 
         /// <summary>
+        /// 场景：甲乙两人签约
+        /// </summary>
+        const int CASE_TWO_PEOPLE_SIGN = 0;
+        /// <summary>
+        ///  场景：企业和个人签约
+        /// </summary>
+        const int CASE_COMPANY_AND_PERSON_SIGN = 1;
+        /// <summary>
+        /// 场景：企业和企业签约
+        /// </summary>
+        const int CASE_TWO_COMPANY_SIGN = 2;
+        /// <summary>
+        ///  场景：多签约人签约
+        /// </summary>
+        const int CASE_MULTIPLE_PEOPLE_SIGN = 3;
+        /// <summary>
+        ///  场景：多方签约，每个签约方支持多个签约人
+        /// </summary>
+        const int CASE_MULTIPLE_PARTIES_SIGN = 4;
+
+        /// <summary>
         /// 快捷签约
         /// </summary>
         /// <param name="caseType">
-        /// 0: TwoPeopleSign;
-        /// 1: CompanyAndPersonSign;
-        /// 2: TwoCompanySign;
-        /// 3: MultiplePeopleSign;
-        /// 4: MultiplePartiesSign
+        /// see above CASE definition
         /// </param>
         static private void QuickSignContract(int signType)
         {
@@ -76,19 +118,19 @@ namespace SxqApiSample
 
             switch (signType)
             {
-                case 0:
+                case CASE_TWO_PEOPLE_SIGN:
                     quickSignatorySample.TwoPeopleSign(GetOrCreateClient());
                     break;
-                case 1:
+                case CASE_COMPANY_AND_PERSON_SIGN:
                     quickSignatorySample.CompanyAndPersonSign(GetOrCreateClient());
                     break;
-                case 2:
+                case CASE_TWO_COMPANY_SIGN:
                     quickSignatorySample.TwoCompanySign(GetOrCreateClient());
                     break;
-                case 3:
+                case CASE_MULTIPLE_PEOPLE_SIGN:
                     quickSignatorySample.MultiplePeopleSign(GetOrCreateClient());
                     break;
-                case 4:
+                case CASE_MULTIPLE_PARTIES_SIGN:
                     quickSignatorySample.MultiplePartiesSign(GetOrCreateClient());
                     break;
                 default:
@@ -102,7 +144,7 @@ namespace SxqApiSample
         /// 普通签约
         /// </summary>
         /// <param name="caseType">
-        /// 
+        /// see above CASE definition
         /// </param>
         static private void SignContract(int signType)
         {
@@ -110,19 +152,19 @@ namespace SxqApiSample
             string signUrl = null;
             switch (signType)
             {
-                case 0:
+                case CASE_TWO_PEOPLE_SIGN:
                     signUrl = sgnatorySample.TwoPeopleSign(GetOrCreateClient());
                     break;
-                case 1:
+                case CASE_COMPANY_AND_PERSON_SIGN:
                     signUrl = sgnatorySample.CompanyAndPersonSign(GetOrCreateClient());
                     break;
-                case 2:
+                case CASE_TWO_COMPANY_SIGN:
                     signUrl = sgnatorySample.TwoCompanySign(GetOrCreateClient());
                     break;
-                case 3:
+                case CASE_MULTIPLE_PEOPLE_SIGN:
                     signUrl = sgnatorySample.MultiplePeopleSign(GetOrCreateClient());
                     break;
-                case 4:
+                case CASE_MULTIPLE_PARTIES_SIGN:
                     signUrl = sgnatorySample.MultiplePartiesSign(GetOrCreateClient());
                     break;
                 default:
@@ -137,13 +179,13 @@ namespace SxqApiSample
         {
             //Ping();
             //Fetch();
-            //QuickSignContract(0);
-            //QuickSignContract(1);
-            //QuickSignContract(2);
-            //QuickSignContract(3);
-            //QuickSignContract(4);
+            //QuickSignContract(CASE_TWO_PEOPLE_SIGN);
+            //QuickSignContract(CASE_COMPANY_AND_PERSON_SIGN);
+            //QuickSignContract(CASE_TWO_COMPANY_SIGN);
+            //QuickSignContract(CASE_MULTIPLE_PEOPLE_SIGN);
+            //QuickSignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            SignContract(0);
+            SignContract(CASE_TWO_PEOPLE_SIGN);
         }
         
     }

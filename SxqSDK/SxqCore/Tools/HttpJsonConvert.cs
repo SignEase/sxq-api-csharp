@@ -29,6 +29,8 @@
                 {
                     responseOneObjString = ResponseUtils.GetResponseOneObjString(value, "data");
                 }
+
+                // return data format
                 if(string.IsNullOrEmpty(responseOneObjString))
                 {
                     responseOneObjString = "{\"storeNo\":\"" + ResponseUtils.GetResponseString(value, "storeNo") + "\"}";

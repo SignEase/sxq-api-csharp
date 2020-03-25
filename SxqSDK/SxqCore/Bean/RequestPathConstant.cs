@@ -5,7 +5,7 @@
     public class RequestPathConstant
     {
         public static string PING = "/api/ping.json";
-        public static string DOWNLOAD_CONTRACT = "/api/fileNotary.json";
+        public static string DOWNLOAD_CONTRACT = "/api/downloadContract.json";
         public static string QUICK_SIGNATORY = "/api/quickSign.json";
         public static string DRAFT_CONTRACT = "/api/draftContract.json";
         public static string SIGN_CONTRACT = "/api/signContract.json";

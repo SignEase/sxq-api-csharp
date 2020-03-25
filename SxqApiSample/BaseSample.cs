@@ -1,5 +1,4 @@
 using SxqClient.Http;
-using SxqCore.Bean;
 using SxqCore.Bean.Request;
 using SxqCore.Bean.Response;
 using SxqCore.Tools;

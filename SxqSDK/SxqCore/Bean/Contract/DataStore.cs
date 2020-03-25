@@ -71,7 +71,7 @@
 
 		public DataStore(string storeName, string transAbs, string isPublic)
 		{
-			this.userBizNumber = QuickSignUtil.GainNo();
+			this.userBizNumber = SignUtil.GainNo();
 			this.storeName = storeName;
 			this.transAbs = transAbs;
             this.isPublic = isPublic;

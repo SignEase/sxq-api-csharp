@@ -45,7 +45,7 @@ namespace SxqApiSample
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "TwoPeople.pdf";
             string contractName = "TwoPeopleSign" + new Random().Next(100) + ".pdf@";
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(contractPdfPath);
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
@@ -146,7 +146,7 @@ namespace SxqApiSample
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "CompanyAndPerson.pdf";
             string contractName = "ConpamyAndPersonSign" + new Random().Next(100) + ".pdf@";
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(contractPdfPath);
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
@@ -236,7 +236,7 @@ namespace SxqApiSample
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "TwoCompany.pdf";
             string contractName = "TwoCompanySign" + new Random().Next(100) + ".pdf@";
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(contractPdfPath);
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
@@ -326,7 +326,7 @@ namespace SxqApiSample
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "MultiplePeople.pdf";
             string contractName = "MultiplePeopleSign" + new Random().Next(100) + ".pdf@";
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(contractPdfPath);
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/
@@ -442,7 +442,7 @@ namespace SxqApiSample
             /** 需要签署的合同 **/
             string contractPdfPath = CONTRACT_PATH_PREFIX + "MultipleParties.pdf";
             string contractName = "MultiplePartiesSign" + new Random().Next(100) + ".pdf@";
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(contractPdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(contractPdfPath);
             contract.PdfFileBase64 = contractName + contractBase64Str;
 
             /** 合同基本信息 **/

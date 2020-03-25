@@ -40,7 +40,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="SxqCore\Bean\Request\PingRequest.cs" />
     <Compile Include="SxqCore\Bean\Response\PingResult.cs" />
-    <Compile Include="SxqCore\Tools\QuickSignUtil.cs" />
+    <Compile Include="SxqCore\Tools\SignUtil.cs" />
     <Compile Include="SxqCore\Bean\Response\SignResult.cs" />
     <Compile Include="SxqCore\Bean\Request\QuickSignRequest.cs" />
     <Compile Include="SxqCore\Bean\Request\DownloadContractRequest.cs" />

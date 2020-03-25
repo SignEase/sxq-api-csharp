@@ -5,7 +5,6 @@ using SxqCore.Tools;
 using System;
 using SxqCore.Bean;
 using SxqCore.Bean.Contract;
-using System.Collections.Generic;
 
 namespace SxqApiSample
 {
@@ -71,7 +70,7 @@ namespace SxqApiSample
         }
 
         /// <summary>
-        /// 多人人签约
+        /// 多签约人签约
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>

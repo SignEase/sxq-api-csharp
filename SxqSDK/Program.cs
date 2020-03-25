@@ -8,7 +8,7 @@ namespace SxqCore
 
         static private void GetFileToBase64Str(string pdfPath)
         {
-            string contractBase64Str = QuickSignUtil.FileToBase64Str(pdfPath);
+            string contractBase64Str = SignUtil.FileToBase64Str(pdfPath);
             Console.WriteLine("ContractBase64({0}): {1}", contractBase64Str.Length, contractBase64Str);
         }
 

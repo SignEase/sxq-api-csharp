@@ -3,11 +3,9 @@
     using System;
     using System.IO;
 
-    public class QuickSignUtil
+    public class SignUtil
     {
-        public QuickSignUtil()
-        {
-        }
+        public SignUtil(){}
 
         /// <summary>
         /// 生成业务编号

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("sdk-csharp-sample")]
-[assembly: AssemblyDescription("sdk csharp sample")]
+[assembly: AssemblyTitle("sxq-sdk-csharp-sample")]
+[assembly: AssemblyDescription("sxq sdk csharp sample")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("sxqian.com")]
-[assembly: AssemblyProduct("sdk-csharp-sample")]
+[assembly: AssemblyProduct("sxq-sdk-csharp-sample")]
 [assembly: AssemblyCopyright("Copyright © 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
