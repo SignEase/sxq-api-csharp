@@ -170,9 +170,18 @@ namespace SxqApiSample
                 default:
                     break;
             }
-            // use the explorer to open the sign url
-            System.Diagnostics.Process.Start(signUrl);
+
+            if(String.IsNullOrEmpty(signUrl))
+            {
+                Console.WriteLine("Return URL is NULL, can't continue the signing processing");
+            }
+            else
+            {
+                // use the explorer to open the sign url
+                System.Diagnostics.Process.Start(signUrl);
+            }
             Console.WriteLine("Call SignContract api finished");
+
         }
 
         static void Main(string[] args)
@@ -186,6 +195,10 @@ namespace SxqApiSample
             //QuickSignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
             SignContract(CASE_TWO_PEOPLE_SIGN);
+            //SignContract(CASE_COMPANY_AND_PERSON_SIGN);
+            //SignContract(CASE_TWO_COMPANY_SIGN);
+            //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
+            //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
         }
         
     }
