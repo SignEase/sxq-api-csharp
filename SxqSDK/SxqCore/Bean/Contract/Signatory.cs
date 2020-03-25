@@ -8,44 +8,6 @@
 	/// </summary>
 	public class Signatory
 	{
-		/** 签章类型 **/
-		/// <summary>
-		/// 私章
-		/// </summary>
-		public const string SEAL_PERSONAL = "PERSONAL";
-		/// <summary>
-		/// 公章
-		/// </summary>
-		public const string SEAL_ENTERPRISE = "OFFICIAL";
-
-		/** 用户类型 **/
-		/// <summary>
-		/// 个人用户
-		/// </summary>
-		public const string USER_PERSONAL = "PERSONAL";
-		/// <summary>
-		/// 企业用户
-		/// </summary>
-		public const string USER_ENTERPRISE = "ENTERPRISE";
-
-		/** 证件类型 **/
-		/// <summary>
-		/// 身份证
-		/// </summary>
-		public const string ID_PERSONAL_CARD = "ID";
-		/// <summary>
-		/// 组织机构代码证
-		/// </summary>
-		public const string ID_INSTITUTION_CODE = "INSTITUTION_CODE";
-		/// <summary>
-		/// 营业执照
-		/// </summary>
-		public const string ID_BUSINESS_LICENCE = "BUSINESS_LICENCE";
-
-		/** 布尔值 **/
-		public const string BOOL_YES = "YES"; //是
-		public const string BOOL_IS = "IS"; //是
-		public const string BOOL_NO = "NO"; //否
 
 		/** 签约组 **/
 		public const string GROUP_A = "甲方";
@@ -67,7 +29,7 @@
 		// 图章类型(公章: official, 私章: personal)
 		private string sealType;
 		// 是否自动签章
-		private string signatoryAuto;
+		private string signatoryAuto = SxqConst.BOOL_NO;
 		// 签约人类型(personal , enterprise)
 		private string signatoryUserType;
 		// 签约时间

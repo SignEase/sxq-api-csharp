@@ -8,23 +8,38 @@
     /// </summary>
     public class Contract
     {
-
-        public const string PHASE_ORIGINAL = "ORIGINAL";        //未签约
-        public const string PHASE_INVALID = "INVALID";          //失效
-        public const string PHASE_SIGNED = "SIGNED";            //已签约
-        public const string MUL_PHASE_WAIT = "WAIT";             //多阶段签-等待履约
-        public const string MUL_PHASE_INPROGRESS = "INPROGRESS"; //多阶段签-正在履行
-
+        /// <summary>
         // pdf文件的base64编码
+        /// </summary>
         protected string pdfFileBase64;
+        /// <summary>
         // 所有签章签约人真实姓名打码
+        /// </summary>
         protected bool realNameMask = false;
+        /// <summary>
         // 所有签章签约人证件号码打码
+        /// </summary>
         protected bool certNoMask = false;
+        /// <summary>
         // 签约人集合
+        /// </summary>
         protected List<Signatory> signatoryList;
+        /// <summary>
         // 签约的基础数据对象
+        /// </summary>
         protected DataStore dataStore;
+        /// <summary>
+        /// 是否自动签章，对该合同下的所有签署人、签署方生效
+        /// </summary>
+        private string signatoryAuto = null;
+        /// <summary>
+        /// 是否允许未登录前对合同进行预览
+        /// </summary>
+        private int allowPreview = SxqConst.PREVIEW_ON;
+        /// <summary>
+        /// 是否允许新注册账户设置登录密码
+        /// </summary>
+        private int allowPwdSetting = SxqConst.PWD_SETTING_ON;
 
         public Contract()
         {
@@ -88,6 +103,43 @@
             set
             {
                 this.dataStore = value;
+            }
+        }
+
+        public string SignatoryAuto
+        {
+            get
+            {
+                return this.signatoryAuto;
+            }
+            set
+            {
+                this.signatoryAuto = value;
+            }
+        }
+
+        public int AllowPreview
+        {
+            get
+            {
+                return this.allowPreview;
+            }
+            set
+            {
+                this.allowPreview = value;
+            }
+        }
+
+
+        public int AllowPwdSetting
+        {
+            get
+            {
+                return this.allowPwdSetting;
+            }
+            set
+            {
+                this.allowPwdSetting = value;
             }
         }
     }

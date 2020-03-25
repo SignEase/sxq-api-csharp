@@ -18,6 +18,8 @@ namespace SxqSDK.SxqCore.Tools
             paramers.AddParamer("yclDataStore.isPublic", contract.DataStore.IsPublic);
             paramers.AddParamer("yclDataStore.userBizNumber", contract.DataStore.UserBizNumber);
             paramers.AddParamer("pdfFileBase64", contract.PdfFileBase64);
+            paramers.AddParamer("allowPreview", contract.AllowPreview.ToString());
+            paramers.AddParamer("allowPwdSetting", contract.AllowPwdSetting.ToString());
 
             List<Signatory> signatoryList = contract.SignatoryList;
             for (int i = 0; i < signatoryList.Count; i++)
@@ -34,12 +36,14 @@ namespace SxqSDK.SxqCore.Tools
                 // 设置必填参数
                 paramers.AddParamer("yclSignatoryList[" + i + "].realName", signatoryList[i].RealName);
                 paramers.AddParamer("yclSignatoryList[" + i + "].sealType", signatoryList[i].SealType);
-                paramers.AddParamer("yclSignatoryList[" + i + "].signatoryAuto", signatoryList[i].SignatoryAuto);
                 paramers.AddParamer("yclSignatoryList[" + i + "].signatoryUserType", signatoryList[i].SignatoryUserType);
                 paramers.AddParamer("yclSignatoryList[" + i + "].signatoryTime", signatoryList[i].SignatoryTime);
                 paramers.AddParamer("yclSignatoryList[" + i + "].groupName", signatoryList[i].GroupName);
                 paramers.AddParamer("yclSignatoryList[" + i + "].groupChar", signatoryList[i].GroupChar);
 
+                // 是否自动签章（授信签约）
+                string autoSign = string.IsNullOrEmpty(contract.SignatoryAuto) ? signatoryList[i].SignatoryAuto : contract.SignatoryAuto;
+                paramers.AddParamer("yclSignatoryList[" + i + "].signatoryAuto", autoSign);
 
                 // 设置可选参数
                 if (!string.IsNullOrEmpty(signatoryList[i].Email))

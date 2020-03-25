@@ -53,11 +53,11 @@
     <Compile Include="SxqCore\Bean\Contract\ContractVariable.cs" />
     <Compile Include="SxqCore\Tools\ParameterWrapper.cs" />
     <Compile Include="SxqCore\Bean\Request\FetchSignUrlRequest.cs" />
+    <Compile Include="SxqCore\Bean\Contract\SxqConst.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SxqCore\" />
     <Folder Include="SxqClient\" />
-    <Folder Include="SxqCore\Bean\Quick\" />
     <Folder Include="SxqCore\Bean\Contract\" />
   </ItemGroup>
   <ItemGroup>

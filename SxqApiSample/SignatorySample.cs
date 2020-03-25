@@ -30,14 +30,10 @@ namespace SxqApiSample
     class SignatorySample : BaseSample
     {
 
-        private const string CONTRACT_PATH_PREFIX = "../../Contract/BaseBoard/";
+        protected const string CONTRACT_PATH_PREFIX = "../../Contract/BaseBoard/";
 
-        /// <summary>
-        /// 甲乙两人签约
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>签约URL-浏览器打开可继续签约</returns>
-        public string TwoPeopleSign(SDKClient client)
+
+        protected Contract ContractOfTwoPeople()
         {
             Contract contract = new Contract();
 
@@ -82,13 +78,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173333";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
@@ -112,13 +108,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702173444";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -132,23 +128,17 @@ namespace SxqApiSample
             sxqSignatory2.SignatureY = 544d;
             //签章页 （不填时默认最后一页）
             sxqSignatory2.SignaturePage = 1;
-    
+
             /** 设置签约方集合 **/
             List<Signatory> sxqSignatorylist = new List<Signatory>();
             sxqSignatorylist.Add(sxqSignatory1);
             sxqSignatorylist.Add(sxqSignatory2);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 签约请求 **/
-            return Process(client, contract);
+            return contract;
         }
 
-        /// <summary>
-        /// 企业和个人签约
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>签约URL-浏览器打开可继续签约</returns>
-        public string CompanyAndPersonSign(SDKClient client)
+        protected Contract ContractOfCompanyAndPerson()
         {
             Contract contract = new Contract();
 
@@ -181,13 +171,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
@@ -209,11 +199,11 @@ namespace SxqApiSample
             // 签约人姓名 必填
             sxqSignatory2.RealName = "省心签科技";
             // 签章类型 必填
-            sxqSignatory2.SealType = Signatory.SEAL_ENTERPRISE;
+            sxqSignatory2.SealType = SxqConst.SEAL_ENTERPRISE;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = Signatory.USER_ENTERPRISE;
+            sxqSignatory2.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -224,7 +214,7 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory2.CertNo = "91500000MA5UCYU7DD";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = Signatory.ID_INSTITUTION_CODE;
+            sxqSignatory2.CertType = SxqConst.ID_INSTITUTION_CODE;
             //签章x坐标 （不填写时系统自动生成）
             sxqSignatory2.SignatureX = 377d;
             //签章y坐标 （不填写时系统自动生成）
@@ -238,16 +228,11 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory2);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 快捷签约请求 **/
-            return Process(client, contract);
+            return contract;
         }
 
-        /// <summary>
-        /// 企业和企业签约
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>签约URL-浏览器打开可继续签约</returns>
-        public string TwoCompanySign(SDKClient client)
+
+        protected Contract ContractOfTwoCompany()
         {
             Contract contract = new Contract();
 
@@ -280,13 +265,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory1.CertNo = "91500000MA5UCYU7AA";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = Signatory.ID_INSTITUTION_CODE;
+            sxqSignatory1.CertType = SxqConst.ID_INSTITUTION_CODE;
             // 签章类型 必填
-            sxqSignatory1.SealType = Signatory.SEAL_ENTERPRISE;
+            sxqSignatory1.SealType = SxqConst.SEAL_ENTERPRISE;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = Signatory.USER_ENTERPRISE;
+            sxqSignatory1.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
@@ -310,13 +295,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory2.CertNo = "91500000MA5UCYU7BB";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = Signatory.ID_INSTITUTION_CODE;
+            sxqSignatory2.CertType = SxqConst.ID_INSTITUTION_CODE;
             // 签章类型 必填
-            sxqSignatory2.SealType = Signatory.SEAL_ENTERPRISE;
+            sxqSignatory2.SealType = SxqConst.SEAL_ENTERPRISE;
             // 是否自动签约  必填
-            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = Signatory.USER_ENTERPRISE;
+            sxqSignatory2.SignatoryUserType = SxqConst.USER_ENTERPRISE;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -338,16 +323,10 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory2);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 快捷签约请求 **/
-            return Process(client, contract);
+            return contract;
         }
 
-        /// <summary>
-        /// 多人人签约
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>签约URL-浏览器打开可继续签约</returns>
-        public string MultiplePeopleSign(SDKClient client)
+        protected Contract ContractOfMultiplePeople()
         {
             Contract contract = new Contract();
 
@@ -380,13 +359,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
@@ -410,13 +389,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702171222";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -438,13 +417,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory3.CertNo = "430511198702171333";
             //填了证件号就必选填证件类型
-            sxqSignatory3.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory3.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory3.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory3.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory3.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory3.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory3.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory3.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -466,16 +445,10 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory3);
             contract.SignatoryList = sxqSignatorylist;
 
-            /** 签约请求 **/
-            return Process(client, contract);
+            return contract;
         }
 
-        /// <summary>
-        /// 多方签约，每个签约方支持多个签约人
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>签约URL-浏览器打开可继续签约</returns>
-        public string MultiplePartiesSign(SDKClient client)
+        protected Contract ContractOfMultipleParties()
         {
             Contract contract = new Contract();
 
@@ -508,13 +481,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory1.CertNo = "430511198702173516";
             //填了证件号就必选填证件类型
-            sxqSignatory1.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory1.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory1.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory1.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory1.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory1.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory1.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory1.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory1.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // 签约方 必填
@@ -538,13 +511,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory2.CertNo = "430511198702173111";
             //填了证件号就必选填证件类型
-            sxqSignatory2.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory2.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory2.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory2.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory2.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory2.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory2.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory2.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory2.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -566,13 +539,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory3.CertNo = "430511198702173222";
             //填了证件号就必选填证件类型
-            sxqSignatory3.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory3.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory3.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory3.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory3.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory3.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory3.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory3.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory3.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -594,13 +567,13 @@ namespace SxqApiSample
             //签约方证件号 选填
             sxqSignatory4.CertNo = "430511198702173333";
             //填了证件号就必选填证件类型
-            sxqSignatory4.CertType = Signatory.ID_PERSONAL_CARD;
+            sxqSignatory4.CertType = SxqConst.ID_PERSONAL_CARD;
             // 签章类型 必填
-            sxqSignatory4.SealType = Signatory.SEAL_PERSONAL;
+            sxqSignatory4.SealType = SxqConst.SEAL_PERSONAL;
             // 是否自动签约 必填
-            sxqSignatory4.SignatoryAuto = Signatory.BOOL_YES;
+            sxqSignatory4.SignatoryAuto = SxqConst.BOOL_YES;
             // 签约用户类型 必填
-            sxqSignatory4.SignatoryUserType = Signatory.USER_PERSONAL;
+            sxqSignatory4.SignatoryUserType = SxqConst.USER_PERSONAL;
             // 签约时间 必填
             sxqSignatory4.SignatoryTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             //签约方 必填
@@ -623,8 +596,64 @@ namespace SxqApiSample
             sxqSignatorylist.Add(sxqSignatory4);
             contract.SignatoryList = sxqSignatorylist;
 
+            return contract;
+        }
+
+
+        /// <summary>
+        /// 甲乙两人签约
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string TwoPeopleSign(SDKClient client)
+        {
+            Contract contract = ContractOfTwoPeople();
+            // 关闭登录前的合同预览；关闭新建账户的密码设置
+            contract.AllowPreview = SxqConst.PREVIEW_OFF;
+            contract.AllowPwdSetting = SxqConst.PWD_SETTING_OFF;
+
             /** 签约请求 **/
             return Process(client, contract);
+        }
+
+        /// <summary>
+        /// 企业和个人签约
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string CompanyAndPersonSign(SDKClient client)
+        {
+            return Process(client, ContractOfCompanyAndPerson());
+        }
+
+        /// <summary>
+        /// 企业和企业签约
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string TwoCompanySign(SDKClient client)
+        {
+            return Process(client, ContractOfTwoCompany());
+        }
+
+        /// <summary>
+        /// 多人人签约
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string MultiplePeopleSign(SDKClient client)
+        {
+            return Process(client, ContractOfMultiplePeople());
+        }
+
+        /// <summary>
+        /// 多方签约，每个签约方支持多个签约人
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string MultiplePartiesSign(SDKClient client)
+        {
+            return Process(client, ContractOfMultipleParties());
         }
 
 

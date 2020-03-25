@@ -8,6 +8,10 @@
     /// </summary>
     public class QuickContract : Contract
     {
-        public QuickContract() { }
+   
+        public QuickContract() {
+            this.SignatoryAuto = SxqConst.BOOL_YES;
+        }
+  
     }
 }
