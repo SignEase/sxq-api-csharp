@@ -113,8 +113,8 @@ https://mock.sxqian.com/api/signatory.json?pdfFileBase64=demo8.pdf%40PDF文件�
 |字段|类型|空|默认|注释|
 |:----          |:-------       |:---|---|------                                           |
 |pdfFileBase64  |string         |否  |   | 文件内容（格式要求为: 文件名 + @ + 文件的Base64编码）   |
-|dataStore   |DataStore   |否  |   | 合同基本信息:[DataStore](./SxqSDK/SxqCore/Bean/Contract/DataStore.cs)|
-|signatoryList  |List<Signatory>   |否  |   | 签约人信息:[Signatory.cs](./SxqSDK/SxqCore/Bean/Contract/Signatory.cs)|
+|dataStore   |DataStore   |否  |   | 合同基本信息: [DataStore](./SxqSDK/SxqCore/Bean/Contract/DataStore.cs)|
+|signatoryList  |List<Signatory>   |否  |   | 签约人信息: [Signatory.cs](./SxqSDK/SxqCore/Bean/Contract/Signatory.cs)|
 |signatoryAuto   |string        |是  |   | YES-自动签章， NO-手动签章      |
 |allowPreview   |int        |是  |   | 0-关闭登录前预览，1-打开登录前预览      |
 |allowPwdSetting   |int        |是  |   | 0-关闭密码设置，1-允许密码设置      |
