@@ -28,7 +28,7 @@ new SDKClient("您的appKey","您的appSercret", "请求的服务器", "回调UR
 
 ### 请求地址
 
-|环境          |      HTTPS请求环境地址
+|环境          |      省心签服务地址
 |:----         |:-------   
 |正式环境      |https://sxqian.com   
 |测试环境      |https://mock.sxqian.com
@@ -73,7 +73,7 @@ https://mock.sxqian.com/api/ping.json
 #### *返回参数说明*
 |字段          |      注释
 |:----         |:-------   
-|success      |是否成功，true为成功，false为失败
+|success      |true-成功，false-失败
 |message      |返回信息
 |data.serviceTime     |服务器时间
 
@@ -152,7 +152,7 @@ https://mock.sxqian.com/api/draftContract.json?pdfFileBase64=demo8.pdf%40PDF文�
 
 |字段|类型|空|默认|注释|
 |:----    |:-------    |:--- |---|------      |
-|success    |bool     |否 |  | 是否成功 true 为成功，false 为失败  |
+|success    |bool     |否 |  | true-成功，false-失败  |
 |message |string |否 |    |   描述  |
 |data.contractId |long |否 |    |   签约创建后的编号  |
 |data.signUrl |string |否 |    |   签约URL，用浏览器打开该URL可继续下一步签约流程  |
@@ -202,7 +202,7 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 
 |字段|类型|空|默认|注释|
 |:----    |:-------    |:--- |---|------      |
-|success    |bool     |否 |  | 是否成功 true 为成功，false 为失败  |
+|success    |bool     |否 |  | true-成功，false-失败  |
 |message |string |否 |    |   描述  |
 |data.contractId |long |否 |    |   签约创建后的编号，可调用 [取回文件接口](#取回文件)，下载合同  |
 
