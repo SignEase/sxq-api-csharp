@@ -12,10 +12,11 @@
         private string accessToken;
         private string accessSecret;
         private string serverUrl;
+        private string callBackUrl;
         private int connectTimeout;
         private int readTimeout;
 
-        public SDKClient(string accessToken, string accessSecret, string serverUrl)
+        public SDKClient(string accessToken, string accessSecret, string serverUrl, string callBackUrl)
         {
             this.VERSION = "C#-0.1.0";
             this.connectTimeout = 0x3a98;
@@ -23,9 +24,10 @@
             this.accessToken = accessToken.Trim();
             this.accessSecret = accessSecret.Trim();
             this.serverUrl = serverUrl.Trim();
+            this.callBackUrl = callBackUrl.Trim();
         }
 
-        public SDKClient(string accessToken, string accessSecret, string serverUrl, int connectTimeout, int readTimeout) : this(accessToken, accessSecret, serverUrl)
+        public SDKClient(string accessToken, string accessSecret, string serverUrl, string callBackUrl, int connectTimeout, int readTimeout) : this(accessToken, accessSecret, serverUrl, callBackUrl)
         {
             this.connectTimeout = connectTimeout;
             this.readTimeout = readTimeout;
@@ -36,6 +38,10 @@
             // old sxqian api polly fill
             paramers.AddParamer("yclDataStore.appKey", this.AccessToken);
             paramers.AddParamer("yclDataStore.appSecret", this.AccessSecret);
+            if (!string.IsNullOrEmpty(this.callBackUrl))
+            {
+                paramers.AddParamer("yclDataStore.callBackUrl", this.callBackUrl);
+            }
         }
 
         private void PolyfixOfOldDownloadApi(ref HttpParamers paramers)
@@ -43,6 +49,7 @@
             // old sxqian api polly fill
             paramers.AddParamer("appKey", this.AccessToken);
             paramers.AddParamer("appSecret", this.AccessSecret);
+        
         }
 
         public void Download(IHttpRequest request, ref Stream outputStream)
@@ -124,6 +131,18 @@
             set
             {
                 this.serverUrl = value;
+            }
+        }
+
+        public string CallBackUrl
+        {
+            get
+            {
+                return this.callBackUrl;
+            }
+            set
+            {
+                this.callBackUrl = value;
             }
         }
     }

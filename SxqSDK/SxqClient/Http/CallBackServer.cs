@@ -12,7 +12,7 @@
     /// </summary>
     public class CallBackServer
     {
-        const string LISTEN_URL = "http://127.0.0.1:7777/";
+        const string LISTEN_URL = "http://127.0.0.1:7777/sxq-callback/";
 
         public CallBackServer() { }
 

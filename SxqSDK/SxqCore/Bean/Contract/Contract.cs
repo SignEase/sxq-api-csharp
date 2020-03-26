@@ -40,6 +40,10 @@
         /// 是否允许新注册账户设置登录密码
         /// </summary>
         private int allowPwdSetting = SxqConst.PWD_SETTING_ON;
+        /// <summary>
+        /// 本合同签约完成后接受通知的回调url
+        /// </summary>
+        private string callBackUrl;
 
         public Contract()
         {
@@ -140,6 +144,18 @@
             set
             {
                 this.allowPwdSetting = value;
+            }
+        }
+
+        public string CallBackUrl
+        {
+            get
+            {
+                return this.callBackUrl;
+            }
+            set
+            {
+                this.callBackUrl = value;
             }
         }
     }

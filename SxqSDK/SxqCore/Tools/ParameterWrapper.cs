@@ -20,6 +20,10 @@ namespace SxqSDK.SxqCore.Tools
             paramers.AddParamer("pdfFileBase64", contract.PdfFileBase64);
             paramers.AddParamer("allowPreview", contract.AllowPreview.ToString());
             paramers.AddParamer("allowPwdSetting", contract.AllowPwdSetting.ToString());
+            if(!string.IsNullOrEmpty(contract.CallBackUrl))
+            {
+                paramers.AddParamer("yclDataStore.callBackUrl", contract.CallBackUrl);
+            }
 
             List<Signatory> signatoryList = contract.SignatoryList;
             for (int i = 0; i < signatoryList.Count; i++)

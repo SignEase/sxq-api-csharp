@@ -11,6 +11,8 @@ namespace SxqApiSample
         private static int env = ENV_DEV; 
         public static string accessSecret = "";
         public static string accessToken = "";
+        // 如果不需要回调，请将以下的callBackUrl设置为null；
+        // 如果设置了回调，请参考CallBackServer完成回调处理实现；
         public static string callBackUrl = "http://ip:port/xxx";
         /** ------------------------  **/
 
@@ -28,7 +30,7 @@ namespace SxqApiSample
             // 指定访问的服务器
             string serverUrl = ParseServer(env);
             
-            return client = new SDKClient(accessToken, accessSecret, serverUrl); 
+            return client = new SDKClient(accessToken, accessSecret, serverUrl, callBackUrl); 
         }
 
         /// <summary>
@@ -185,10 +187,9 @@ namespace SxqApiSample
 
         }
 
-        private static void CallBack()
+        private static void CallBackListener()
         {
-            CallBackServer.Inst("http://127.0.0.1:7777/");
-            //CallBackServer.Inst(callBackUrl);
+            CallBackServer.Inst(callBackUrl);
         }
 
         static void Main(string[] args)
@@ -202,13 +203,13 @@ namespace SxqApiSample
             //QuickSignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //QuickSignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            //SignContract(CASE_TWO_PEOPLE_SIGN);
+            SignContract(CASE_TWO_PEOPLE_SIGN);
             //SignContract(CASE_COMPANY_AND_PERSON_SIGN);
             //SignContract(CASE_TWO_COMPANY_SIGN);
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            CallBack();
+            //CallBackListener();
         }
 
     }
