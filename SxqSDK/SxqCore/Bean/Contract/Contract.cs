@@ -41,9 +41,9 @@
         /// </summary>
         private int allowPwdSetting = SxqConst.PWD_SETTING_ON;
         /// <summary>
-        /// 本合同签约完成后接受通知的回调url
+        /// 强制是否手写签章
         /// </summary>
-        private string callBackUrl;
+        private bool handWriting = false;
 
         public Contract()
         {
@@ -147,15 +147,15 @@
             }
         }
 
-        public string CallBackUrl
+        public bool HandWriting
         {
             get
             {
-                return this.callBackUrl;
+                return this.handWriting;
             }
             set
             {
-                this.callBackUrl = value;
+                this.handWriting = value;
             }
         }
     }

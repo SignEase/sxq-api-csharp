@@ -101,6 +101,12 @@
 
         public Signatory() { }
 
+        public bool IsPersonal()
+        {
+			return SxqConst.USER_PERSONAL.Equals(this.signatoryUserType);
+        }
+
+
 		public string RealName
 		{
 			get

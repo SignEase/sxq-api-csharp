@@ -8,7 +8,8 @@
 2. 在`账户管理`->`基本资料`里申请并获取`AppKey`和`AppSecret`。
 3. Clone本工程并集成（或拷贝必要的代码片段）到您的业务系统中。
 4. 参考[Program.cs](./SxqApiSample/Program.cs)里的用例进行调试。
-5. 请求参数与请求事例参数有出入请以请求参数为准，请求事例含有的参数而请求参数中没有的参数为sdk生成。
+5. 设置了回调监听的，可参考[CallBackServer.cs](./SxqSDK/SxqClient/Http/CallBackServer.cs)。
+6. 请求参数与请求事例参数有出入请以请求参数为准，请求事例含有的参数而请求参数中没有的参数为sdk生成。
 
 ## API列表
 
@@ -16,7 +17,7 @@
 
 **初始化示例**
 ```
-new SDKClient("您的appKey","您的appSercret", "请求的服务器");
+new SDKClient("您的appKey","您的appSercret", "请求的服务器", "回调监听URL");
 ```
 请参见 [Program.cs#GetOrCreateClient](./SxqApiSample/Program.cs)
 
@@ -115,12 +116,12 @@ https://mock.sxqian.com/api/signatory.json?pdfFileBase64=demo8.pdf%40PDF文件�
 |pdfFileBase64  |string         |否  |   | 文件内容（格式要求为: 文件名 + @ + 文件的Base64编码）   |
 |dataStore   |DataStore   |否  |   | 合同基本信息: [DataStore](./SxqSDK/SxqCore/Bean/Contract/DataStore.cs)|
 |signatoryList  |List<Signatory>   |否  |   | 签约人信息: [Signatory.cs](./SxqSDK/SxqCore/Bean/Contract/Signatory.cs)|
-|callBackUrl   |string        |是  |   | 本合同签约完成后接受通知的回调url     |
+|allowPreview   |int        |否  |  1 | 0-关闭登录前预览，1-打开登录前预览      |
+|allowPwdSetting   |int        |否  | 1  | 0-关闭密码设置，1-允许密码设置      |
+|realNameMask   |bool        | 否 |  false | true: 所有签约人姓名打掩码。仅显示姓，其余的显示*号      |
+|certNoMask     |bool        |否  |  false | true: 所有签约人证件号打掩码。后四位显示*号          |
+|handWriting     |bool        |否  | false  | 强制本次签约的个人用户是否手写签字     |
 |signatoryAuto   |string        |是  |   | YES-自动签章， NO-手动签章      |
-|allowPreview   |int        |是  |   | 0-关闭登录前预览，1-打开登录前预览      |
-|allowPwdSetting   |int        |是  |   | 0-关闭密码设置，1-允许密码设置      |
-|realNameMask   |bool        |是  |   | true: 所有签约人姓名打掩码。仅显示姓，其余的显示*号      |
-|certNoMask     |bool        |是  |   | true: 所有签约人证件号打掩码。后四位显示*号          |
 
 ##### *请求成功*
 

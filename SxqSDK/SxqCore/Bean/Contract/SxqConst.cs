@@ -13,6 +13,10 @@ namespace SxqCore.Bean.Contract
 		/// 公章
 		/// </summary>
 		public const string SEAL_ENTERPRISE = "OFFICIAL";
+		/// <summary>
+		/// 手写签章
+		/// </summary>
+		public const string SEAL_HANDWRITING = "Handwriting";
 
 		/** 用户类型 **/
 		/// <summary>
