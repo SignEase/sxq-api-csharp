@@ -584,6 +584,8 @@ namespace SxqApiSample
             // 关闭登录前的合同预览；关闭新建账户的密码设置
             contract.AllowPreview = SxqConst.PREVIEW_OFF;
             contract.AllowPwdSetting = SxqConst.PWD_SETTING_OFF;
+            // 开启个人签约人强制手写签章
+            contract.HandWriting = true;
 
             /** 签约请求 **/
             return Process(client, contract);
