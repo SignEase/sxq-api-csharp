@@ -177,6 +177,7 @@ https://mock.sxqian.com/api/draftContract.json?pdfFileBase64=demo8.pdf%40PDF文�
 
 #### *请求参数*
 和电子签约的请求参数一致，请参见: [电子签约-请求参数](#电子签约)
+
 Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人自动完成签章操作
 #### *请求成功*
 ```
@@ -203,9 +204,7 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 |:----    |:-------    |:--- |---|------      |
 |success    |bool     |否 |  | 是否成功 true 为成功，false 为失败  |
 |message |string |否 |    |   描述  |
-|data.contractId |long |否 |    |   签约创建后的编号  |
-
-可调用[取回文件接口](#取回文件)，下载已签署的合同
+|data.contractId |long |否 |    |   签约创建后的编号，可调用[取回文件接口](#取回文件)，下载合同  |
 
 #### *示例代码*
 请参见 [Program.cs#QuickSignContract](./SxqApiSample/Program.cs)
