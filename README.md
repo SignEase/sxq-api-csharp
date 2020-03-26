@@ -1,15 +1,15 @@
 # 省心签API-C# 接入文档
 
 本项目是Visual Studio工程，包含两个子模块`SxqApiSample`和`SxqSDK`。
-主要的使用示例都在[Program.cs](./SxqApiSample/Program.cs)。
+主要的使用示例都在 [Program.cs](./SxqApiSample/Program.cs)。
 
 ## 接入步骤
 - 创建并登录省心签账户，[官网网址](https://sxqian.com)。
 - 在`账户管理`->`基本资料`里申请并获取`AppKey`和`AppSecret`。
 - Clone本工程并集成（或拷贝必要的代码片段）到您的业务系统中。
-- 参考[Program.cs](./SxqApiSample/Program.cs)里的用例进行调试。
-- 设置了回调URL的，可参考[CallBackServer.cs](./SxqSDK/SxqClient/Http/CallBackServer.cs)。
-- 请求参数与请求事例参数有出入请以请求参数为准，请求事例含有的参数而请求参数中没有的参数为sdk生成。
+- 参考 [Program.cs](./SxqApiSample/Program.cs) 里的用例进行调试。
+- 设置了回调URL的，可参考 [CallBackServer.cs](./SxqSDK/SxqClient/Http/CallBackServer.cs) 。
+- 请求事例中的部分参数由SDK自动生成，可查看SDK里的代码。
 
 ## API列表
 - [PING](#PING): 测试服务器是否连通
@@ -90,9 +90,9 @@ https://mock.sxqian.com/api/ping.json
 - 一次电子签约过程中，可以为不同的签约人选择`自动签约`与`手动签约`，即一份签约文件里面可以存在多种签约方式。
 - 自动签约: 签约人设置为`自动签约`时，系统会自动为该签约人完成签章。自动签约的一个实例: [快捷签约](#快捷签约)。
 - 手动签约: 接口会返回后续的签约URL，使用浏览器打开URL可以继续签约流程。
-- 信息脱敏：可以为用户的姓名和身份证号等敏感信息设置是否进行脱敏。`realNameMask-姓名开启掩码`和`certNoMask-身份证开启掩码`:
-- [Contract.cs](./SxqSDK/SxqCore/Bean/Contract/Contract.cs)类中的配置是全局生效的，
-也可以在[Signatory.cs](./SxqSDK/SxqCore/Bean/Contract/Signatory.cs)类为每个签约人单独配置，优先级大于全局设置。
+- 信息脱敏：可以为用户的姓名和身份证号设置是否脱敏。`realNameMask-姓名掩码`和`certNoMask-身份证掩码`。
+- [Contract.cs](./SxqSDK/SxqCore/Bean/Contract/Contract.cs) 类中的配置是全局生效的，
+也可以在[Signatory.cs](./SxqSDK/SxqCore/Bean/Contract/Signatory.cs) 类为每个签约人单独配置，优先级大于全局设置。
 
 #### *请求地址*
 ```
@@ -204,7 +204,7 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 |:----    |:-------    |:--- |---|------      |
 |success    |bool     |否 |  | 是否成功 true 为成功，false 为失败  |
 |message |string |否 |    |   描述  |
-|data.contractId |long |否 |    |   签约创建后的编号，可调用[取回文件接口](#取回文件)，下载合同  |
+|data.contractId |long |否 |    |   签约创建后的编号，可调用 [取回文件接口](#取回文件)，下载合同  |
 
 #### *示例代码*
 请参见 [Program.cs#QuickSignContract](./SxqApiSample/Program.cs)
@@ -236,5 +236,5 @@ https://mock.sxqian.com/api/downloadContract.json?appKey=%E6%82%A8%E7%9A%84appKe
 
 
 #### *示例代码*
-请参见 [Program.cs#Download](./SxqApiSample/Program.cs#Download)
+请参见 [Program.cs#Download](./SxqApiSample/Program.cs)
 
