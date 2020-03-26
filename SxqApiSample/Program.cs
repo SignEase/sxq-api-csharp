@@ -8,9 +8,10 @@ namespace SxqApiSample
     {
 
         /** -开始联调前，请设置以下参数- **/
-        private static int env = ENV_MOCK; 
+        private static int env = ENV_DEV; 
         public static string accessSecret = "";
         public static string accessToken = "";
+        public static string callBackUrl = "http://ip:port/xxx";
         /** ------------------------  **/
 
         private static SDKClient client = null;
@@ -72,15 +73,15 @@ namespace SxqApiSample
         /// <summary>
         /// 取回已签约/存证的合同
         /// </summary>
-        static private void Download()
+        /// <param name="contractId">
+        /// 创建的签约合同编号
+        /// </param>
+        static private void Download(long contractId)
         {
-            // 合同签约后返回的合同存证编号
-            //string storeNo = "YC0001046440";
-            string storeNo = "YC0001046455";
             // 存储到本地的文件路径
             string localFilePath = "../../Contract/Signed/ContractFetched.pdf";
             BaseSample baseSample = new BaseSample();
-            baseSample.Fetch(GetOrCreateClient(), storeNo, localFilePath);
+            baseSample.Download(GetOrCreateClient(), contractId.ToString(), localFilePath);
             Console.WriteLine("Download file success, you can find the file at {0}" , localFilePath);
             Console.WriteLine("Call Download api finished");
         }
@@ -184,22 +185,31 @@ namespace SxqApiSample
 
         }
 
+        private static void CallBack()
+        {
+            CallBackServer.Inst("http://127.0.0.1:7777/");
+            //CallBackServer.Inst(callBackUrl);
+        }
+
         static void Main(string[] args)
         {
             //Ping();
-            //Fetch();
+            //Download(1046571L);
+
             //QuickSignContract(CASE_TWO_PEOPLE_SIGN);
             //QuickSignContract(CASE_COMPANY_AND_PERSON_SIGN);
             //QuickSignContract(CASE_TWO_COMPANY_SIGN);
             //QuickSignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //QuickSignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            SignContract(CASE_TWO_PEOPLE_SIGN);
+            //SignContract(CASE_TWO_PEOPLE_SIGN);
             //SignContract(CASE_COMPANY_AND_PERSON_SIGN);
             //SignContract(CASE_TWO_COMPANY_SIGN);
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
+
+            CallBack();
         }
-        
+
     }
 }

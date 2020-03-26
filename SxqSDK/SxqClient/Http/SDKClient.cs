@@ -17,7 +17,7 @@
 
         public SDKClient(string accessToken, string accessSecret, string serverUrl)
         {
-            this.VERSION = "C#-3.0.2";
+            this.VERSION = "C#-0.1.0";
             this.connectTimeout = 0x3a98;
             this.readTimeout = 0x7530;
             this.accessToken = accessToken.Trim();

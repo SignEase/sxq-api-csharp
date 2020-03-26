@@ -53,6 +53,7 @@
     <Compile Include="SxqCore\Tools\ParameterWrapper.cs" />
     <Compile Include="SxqCore\Bean\Request\FetchSignUrlRequest.cs" />
     <Compile Include="SxqCore\Bean\Contract\SxqConst.cs" />
+    <Compile Include="SxqClient\Http\CallBackServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SxqCore\" />

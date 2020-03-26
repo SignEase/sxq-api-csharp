@@ -42,7 +42,7 @@ namespace SxqApiSample
         /// <param name="contractId">合同编号</param>
         /// <param name="filePath">文件的保存路径</param>
         /// <returns></returns>
-        public void Fetch(SDKClient client, string contractId, string filePath)
+        public void Download(SDKClient client, string contractId, string filePath)
         {
             DownloadContractRequest request = new DownloadContractRequest(contractId);
             try

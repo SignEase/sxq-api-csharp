@@ -1,24 +1,15 @@
 namespace SxqCore
 {
-    using System;
-    using SxqCore.Tools;
+    using SxqClient.Http;
 
     class Program
     {
+        const string LISTEN_URL = "http://127.0.0.1:7777/";
 
-        static private void GetFileToBase64Str(string pdfPath)
-        {
-            string contractBase64Str = SignUtil.FileToBase64Str(pdfPath);
-            Console.WriteLine("ContractBase64({0}): {1}", contractBase64Str.Length, contractBase64Str);
-        }
 
         static void Main(string[] args)
         {
-            //Console.WriteLine("GainNo: {0}", QuickSignUtil.GainNo());
-            string contractPdfPath1 = "/Users/ben/Downloads/TwoPeople.pdf";
-            string contractPdfPath2 = "/Users/ben/Downloads/TwoPeopleLarge.pdf";
-            GetFileToBase64Str(contractPdfPath1);
-            GetFileToBase64Str(contractPdfPath2);
+            //CallBackServer.Inst(LISTEN_URL);
         }
 
     }

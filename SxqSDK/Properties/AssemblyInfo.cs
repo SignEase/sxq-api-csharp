@@ -10,4 +10,4 @@
 [assembly: System.Reflection.AssemblyTrademark("")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.Runtime.InteropServices.Guid("b76e2b75-72a8-4646-a2ef-fb1ba58de5c5")]
-[assembly: System.Reflection.AssemblyFileVersion("3.0.2.0")]
+[assembly: System.Reflection.AssemblyFileVersion("0.1.0.0")]
