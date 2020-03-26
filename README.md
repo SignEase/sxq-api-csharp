@@ -221,8 +221,8 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 
 #### *请求示例*
 ```
-https://mock.sxqian.com/api/downloadContract.json?appKey=%E6%82%A8%E7%9A%84appKey
-&appSecret=%E6%82%A8%E7%9A%84appSecret
+https://mock.sxqian.com/api/downloadContract.json?appKey=20200303093507658157
+&appSecret=3daca3b13ef04e7f8a751d74c8318a1f
 &contractId=1046570
 ```
 
