@@ -177,8 +177,21 @@
                     {
                         try
                         {
+                            // format the listen url
+                            if (!string.IsNullOrEmpty(listenUrl))
+                            {
+                                if (!listenUrl.EndsWith("/"))
+                                {
+                                    listenUrl += "/";
+                                }
+                            }
+                            else
+                            {
+                                listenUrl = LISTEN_URL;
+                            }
+
                             listerner.AuthenticationSchemes = AuthenticationSchemes.Anonymous;//Anonymous匿名访问
-                            listerner.Prefixes.Add(string.IsNullOrEmpty(listenUrl) ? LISTEN_URL : listenUrl); //监听端口
+                            listerner.Prefixes.Add(listenUrl); //监听端口
                             listerner.Start();
                         }
                         catch (Exception e)
@@ -188,7 +201,7 @@
                         }
                         break;
                     }
-                    Console.WriteLine("Callback server starup....");
+                    Console.WriteLine("Callback server starup: " + listenUrl);
                     while (true)
                     {
                         //等待请求连接(阻塞状态)

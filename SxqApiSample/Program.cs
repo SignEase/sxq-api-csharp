@@ -8,12 +8,12 @@ namespace SxqApiSample
     {
 
         /** -开始联调前，请设置以下参数- **/
-        private static int env = ENV_DEV; 
+        private static int env = ENV_MOCK; 
         public static string accessSecret = "";
         public static string accessToken = "";
         // 如果不需要回调，请将以下的callBackUrl设置为null；
         // 如果设置了回调，请参考CallBackServer完成回调处理实现；
-        public static string callBackUrl = "http://ip:port/xxx";
+        public static string callBackUrl = "http://ip:port/xxx/";
         /** ------------------------  **/
 
         private static SDKClient client = null;
