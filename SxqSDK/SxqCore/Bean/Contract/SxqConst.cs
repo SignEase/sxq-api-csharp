@@ -90,6 +90,47 @@ namespace SxqCore.Bean.Contract
 		public const int PWD_SETTING_OFF = 0;
 
 
+		/** 合同状态 **/
+		/// <summary>
+		///未签约
+		/// </summary>
+		public const string CONTRACT_STATUS_ORIGINAL = "ORIGINAL";
+		/// <summary>
+		///失效
+		/// </summary>
+		public const string CONTRACT_STATUS_INVALID = "INVALID";
+		/// <summary>
+		///已成功签约
+		/// </summary>
+		public const string CONTRACT_STATUS_SIGNED = "SIGNED";
+		/// <summary>
+		///多阶段-等待履约
+		/// </summary>
+		public const string CONTRACT_STATUS_WAIT = "WAIT";
+		/// <summary>
+		///多阶段-正在履行合同
+		/// </summary>
+		public const string CONTRACT_STATUS_INPROGRESS = "INPROGRESS";
+
+		/** 签约人签约状态 **/
+		/// <summary>
+		///等待签约
+		/// </summary>
+		public const string SIGNATORY_STATUS_WAITING = "WAITING";
+		/// <summary>
+		///过期
+		/// </summary>
+		public const string SIGNATORY_STATUS_OVERDUE = "OVERDUE";
+		/// <summary>
+		///拒签
+		/// </summary>
+		public const string SIGNATORY_STATUS_REFUSAL = "REFUSAL";
+		/// <summary>
+		///已成功签约
+		/// </summary>
+		public const string SIGNATORY_STATUS_COMPLETED = "COMPLETED";
+
+
 		public SxqConst() { }
 
     }
