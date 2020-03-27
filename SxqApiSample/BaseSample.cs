@@ -36,7 +36,7 @@ namespace SxqApiSample
         }
 
         /// <summary>
-        /// 取回已签约/已存证文件
+        /// 下载已签约/已存证文件
         /// </summary>
         /// <param name="client"></param>
         /// <param name="contractId">合同编号</param>
@@ -62,6 +62,62 @@ namespace SxqApiSample
                 throw new Exception("取回文件失败,失败原因： " + e.Message);
             }
         }
+
+
+        /// <summary>
+        /// 查询签约详情
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="contractId">合同编号</param>
+        /// <returns></returns>
+        public SdkResponse<QueryContractResult> QueryContract(SDKClient client, string contractId)
+        {
+            QueryContractRequest request = new QueryContractRequest(contractId);
+            string response = null;
+            try
+            {
+                response = client.Service(request);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("QueryContract失败,失败原因： " + e.Message);
+            }
+
+            SdkResponse<QueryContractResult> sdkResponse = HttpJsonConvert.DeserializeResponse<QueryContractResult>(response);
+            if (!sdkResponse.Success)
+            {
+                throw new Exception("QueryContract失败，失败原因： " + sdkResponse.Message);
+            }
+            return sdkResponse;
+        }
+
+        /// <summary>
+        /// 继续签约的链接
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="contractId">合同编号</param>
+        /// <returns></returns>
+        public string FetchSignUrl(SDKClient client, string contractId)
+        {
+            FetchSignUrlRequest request = new FetchSignUrlRequest(contractId);
+            string response = null;
+            try
+            {
+                response = client.Service(request);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("FetchSignUrl失败,失败原因： " + e.Message);
+            }
+
+            SdkResponse<SignResult> sdkResponse = HttpJsonConvert.DeserializeResponse<SignResult>(response);
+            if (!sdkResponse.Success)
+            {
+                throw new Exception("FetchSignUrl失败，失败原因： " + sdkResponse.Message);
+            }
+            return sdkResponse.Result.SignUrl;
+        }
+
 
         public BaseSample() { }
     }

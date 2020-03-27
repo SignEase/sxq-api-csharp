@@ -73,7 +73,7 @@ namespace SxqApiSample
         }
 
         /// <summary>
-        /// 取回已签约/存证的合同
+        /// 下载已签约/存证的合同
         /// </summary>
         /// <param name="contractId">
         /// 创建的签约合同编号
@@ -187,6 +187,48 @@ namespace SxqApiSample
 
         }
 
+
+        /// <summary>
+        /// 取回已签约/存证的合同
+        /// </summary>
+        /// <param name="contractId">
+        ///签约合同编号
+        /// </param>
+        static private void QueryContract(long contractId)
+        {
+            BaseSample baseSample = new BaseSample();
+            SdkResponse<QueryContractResult> rs = baseSample.QueryContract(GetOrCreateClient(), contractId.ToString());
+            //TODO print detail of the QueryContractResult
+            Console.WriteLine("Call QueryContract api finished");
+        }
+
+
+        /// <summary>
+        /// 获取继续签约的链接（用于某些特殊场景下，丢失了后续签约的链接）
+        /// </summary>
+        /// <param name="contractId">
+        /// 签约合同编号
+        /// </param>
+        static private void FetchSignUrl(long contractId)
+        {
+            BaseSample baseSample = new BaseSample();
+            string signUrl = baseSample.FetchSignUrl(GetOrCreateClient(), contractId.ToString());
+            if (String.IsNullOrEmpty(signUrl))
+            {
+                Console.WriteLine("Return URL is NULL, can't continue the signing processing");
+            }
+            else
+            {
+                // use the explorer to open the sign url
+                System.Diagnostics.Process.Start(signUrl);
+            }
+
+            Console.WriteLine("Call FetchSignUrl api finished");
+        }
+
+        /// <summary>
+        /// 启动本地的回调监听服务
+        /// </summary>
         private static void CallBackListener()
         {
             CallBackServer.Inst(callBackUrl);
@@ -203,11 +245,14 @@ namespace SxqApiSample
             //QuickSignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //QuickSignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            SignContract(CASE_TWO_PEOPLE_SIGN);
+            //SignContract(CASE_TWO_PEOPLE_SIGN);
             //SignContract(CASE_COMPANY_AND_PERSON_SIGN);
             //SignContract(CASE_TWO_COMPANY_SIGN);
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
+
+            FetchSignUrl(1046573L);
+            //QueryContract(1046573L);
 
             //CallBackListener();
         }

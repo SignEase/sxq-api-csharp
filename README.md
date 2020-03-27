@@ -15,7 +15,7 @@
 - [PING](#PING): 测试服务器是否连通
 - [电子签约](#电子签约): 创建合同，并由签约人/方手动完成签章
 - [快捷签约](#快捷签约): 授信情况下，签约人/方无需签章，自动完成快捷签约
-- [取回文件](#取回文件): 取回已签约合同或存证的文件
+- [下载文件](#下载文件): 取回已签约合同或存证的文件
 ---
 
 ### 环境感知
@@ -204,14 +204,14 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 |:----    |:-------    |:--- |---|------      |
 |success    |bool     |否 |  | true-成功，false-失败  |
 |message |string |否 |    |   描述  |
-|data.contractId |long |否 |    |   签约创建后的编号，可调用 [取回文件接口](#取回文件)，下载合同  |
+|data.contractId |long |否 |    |   签约创建后的编号，可调用 [下载文件接口](#下载文件)，下载合同  |
 
 #### *示例代码*
 请参见 [Program.cs#QuickSignContract](./SxqApiSample/Program.cs)
 
 ---
 
-### 取回文件
+### 下载文件
 取回已签约合同或存证的文件，返回的是数据流（将数据流保存成本地的pdf文件即可）。
 
 #### *请求地址*
@@ -221,9 +221,13 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 
 #### *请求示例*
 ```
-https://mock.sxqian.com/api/downloadContract.json?appKey=20200303093507658157
-&appSecret=3daca3b13ef04e7f8a751d74c8318a1f
-&contractId=1046570
+GET /api/fileNotary.json?contractId=1046427 HTTP/1.1
+Host: mock.sxqian.com
+x-sxq-open-accesstoken: 3daca3b13ef04e7f8a751d74c8318a1f
+x-sxq-open-accesssecret: 20200303093507658157
+Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67FContent-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
 ```
 
 #### *参数*
@@ -234,7 +238,81 @@ https://mock.sxqian.com/api/downloadContract.json?appKey=20200303093507658157
 |appKey         |string         |否  |   | 用户的appKey    |
 |appSecret      |string         |否  |   |  用户appSecret   |
 
-
 #### *示例代码*
 请参见 [Program.cs#Download](./SxqApiSample/Program.cs)
 
+---
+
+### 获取签约链接
+查询并获取签约链接，可用浏览器打开签约链接继续签约流程
+
+#### *请求地址*
+```
+/api/fetchSignUrl.json
+```
+
+#### *请求示例*
+```
+POST /api/fetchSignUrl.json HTTP/1.1
+Host: mock.sxqian.com
+x-sxq-open-accesstoken: 3daca3b13ef04e7f8a751d74c8318a1f
+x-sxq-open-accesssecret: 20200303093507658157
+Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67FContent-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="contractId"
+
+1046573
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+```
+
+#### *参数*
+
+|字段|类型|可为空|默认|注释|
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|contractId   |string   |否   |   |签约创建后的编号   |
+|appKey         |string         |否  |   | 用户的appKey    |
+|appSecret      |string         |否  |   |  用户appSecret   |
+
+
+#### *示例代码*
+请参见 [Program.cs#FetchSignUrl](./SxqApiSample/Program.cs)
+
+---
+
+### 查询签约
+TODO
+
+查询签约详情
+
+#### *请求地址*
+```
+/api/queryContract.json
+```
+
+#### *请求示例*
+```
+POST /api/queryContract.json HTTP/1.1
+Host: mock.sxqian.com
+x-sxq-open-accesstoken: 3daca3b13ef04e7f8a751d74c8318a1f
+x-sxq-open-accesssecret: 20200303093507658157
+Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67FContent-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="contractId"
+
+1046573
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+```
+
+#### *参数*
+
+|字段|类型|可为空|默认|注释|
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+|contractId   |string   |否   |   |签约创建后的编号   |
+|appKey         |string         |否  |   | 用户的appKey    |
+|appSecret      |string         |否  |   |  用户appSecret   |
+
+
+#### *示例代码*
+请参见 [Program.cs#FetchSignUrl](./SxqApiSample/Program.cs)
