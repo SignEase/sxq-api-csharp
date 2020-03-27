@@ -46,11 +46,12 @@ new SDKClient("您的appKey","您的appSercret", "请求的服务器", "回调UR
 
 #### *请求示例*
 ```
-https://mock.sxqian.com/api/ping.json
+POST /api/ping.json HTTP/1.1
+Host: mock.sxqian.com
+Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67F
 ```
 
 #### *请求成功*
-
 ```
 {
     "success": true,
@@ -62,7 +63,6 @@ https://mock.sxqian.com/api/ping.json
 ```
 
 #### *请求失败*
-
 ```
 {
     "success": false,
@@ -100,17 +100,58 @@ https://mock.sxqian.com/api/ping.json
 ```
 #### *请求示例*
 ```
-https://mock.sxqian.com/api/draftContract.json?pdfFileBase64=demo8.pdf%40PDF文件的base64
-&yclSignatoryList[1].certType=ID
-&yclSignatoryList[0].groupChar=a
-&yclSignatoryList[2].certNo=4355343544353
-&yclSignatoryList[1].sealType=PERSONALl
-&sign=e393bc5aa0bca81034ce0a59532ef26f
-&yclDataStore.storeName=%E3%80%8A%E5%90%88%E5%90%8C%E5%90%8D%E7%A7%B0%E3%80%8B
-&yclSignatoryList[1].keywords=%E5%BC%80%E6%88%B7%E9%93%B6%E8%A1%8C
-&yclSignatoryList[1].certNo=4355343544353ssss54
-&yclSignatoryList[2].signatoryTime=2018-2-28
-...
+POST /api/signatory.json? HTTP/1.1
+Host: mock.sxqian.com
+x-sxq-open-accesstoken: 3daca3b13ef04e7f8a751d74c8318a1f
+x-sxq-open-accesssecret: 20200303093507658157
+Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67FContent-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclDataStore.storeName"
+测试签约合同
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclDataStore.isPublic"
+PUBLIC
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclDataStore.userBizNumber"
+20200305175927990718
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].groupChar"
+a
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].realName"
+姓名
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].groupName"
+甲方
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signaturePage"
+1
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].sealType"
+PERSONAL
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signatoryUserType"
+PERSONAL
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signatoryTime"
+2018-2-28
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].email"
+zjq115097475@qq.com
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signatoryAuto"
+YES
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signatureY"
+100.0
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].sealPurpose"
+合同专用章
+----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="yclSignatoryList[0].signatureX"
+100.0
+......
 ```
 #### *请求参数*
 请参见 [Contract.cs](./SxqSDK/SxqCore/Bean/Contract/Contract.cs)
@@ -156,7 +197,6 @@ https://mock.sxqian.com/api/draftContract.json?pdfFileBase64=demo8.pdf%40PDF文�
 |message |string |否 |    |   描述  |
 |data.contractId |long |否 |    |   签约创建后的编号  |
 |data.signUrl |string |否 |    |   签约URL，用浏览器打开该URL可继续下一步签约流程  |
-
 
 #### *示例代码*
 请参见 [Program.cs#SignContract](./SxqApiSample/Program.cs)
@@ -312,7 +352,6 @@ Content-Disposition: form-data; name="contractId"
 |contractId   |string   |否   |   |签约创建后的编号   |
 |appKey         |string         |否  |   | 用户的appKey    |
 |appSecret      |string         |否  |   |  用户appSecret   |
-
 
 #### *示例代码*
 请参见 [Program.cs#FetchSignUrl](./SxqApiSample/Program.cs)
