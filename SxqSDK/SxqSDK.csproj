@@ -55,6 +55,7 @@
     <Compile Include="SxqCore\Bean\Contract\SxqConst.cs" />
     <Compile Include="SxqClient\Http\CallBackServer.cs" />
     <Compile Include="SxqCore\Bean\Response\QueryContractResult.cs" />
+    <Compile Include="SxqCore\Bean\Response\SignatoryRs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SxqCore\" />

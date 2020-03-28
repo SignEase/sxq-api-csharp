@@ -72,7 +72,7 @@ Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67F
 }
 ```
 
-#### *返回参数说明*
+#### *返回参数*
 |字段          |      注释
 |:----         |:-------   
 |success      |true-成功，false-失败
@@ -191,7 +191,7 @@ Content-Disposition: form-data; name="yclSignatoryList[0].signatureX"
 }
 ```
 
-#### *返回参数说明*
+#### *返回参数*
 
 |字段|类型|空|默认|注释|
 |:----    |:-------    |:--- |---|------      |
@@ -240,7 +240,7 @@ Contract.signatoryAuto被强制设置为"YES"，授信模式下所有签约人�
 }
 ```
 
-#### *返回参数说明*
+#### *返回参数*
 
 |字段|类型|空|默认|注释|
 |:----    |:-------    |:--- |---|------      |
@@ -272,7 +272,7 @@ Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67FContent-Type: multipart/for
 ----WebKitFormBoundary7MA4YWxkTrZu0gW
 ```
 
-#### *参数*
+#### *请求参数*
 
 |字段|类型|可为空|默认|注释|
 | ------------ | ------------ | ------------ | ------------ | ------------ |
@@ -323,8 +323,6 @@ Content-Disposition: form-data; name="contractId"
 ---
 
 ### 查询签约
-TODO
-
 查询签约详情
 
 #### *请求地址*
@@ -355,5 +353,75 @@ Content-Disposition: form-data; name="contractId"
 |appKey         |string         |否  |   | 用户的appKey    |
 |appSecret      |string         |否  |   |  用户appSecret   |
 
+#### *请求成功*
+```
+{
+ "success": true,
+    "message": "查询签约成功",
+    "data": {
+        "signatories": [
+            {
+                "emptySignatory": false,
+                "groupName": "甲方",
+                "groupChar": "a",
+                "signatoryId": 6712,
+                "invalid": false,
+                "setNext": false,
+                "useApproval": false,
+                "sxqVerified": true,
+                "remove": false,
+                "status": "WAITING"
+            },
+            {
+                "emptySignatory": false,
+                "groupName": "乙方",
+                "groupChar": "b",
+                "signatoryId": 6713,
+                "invalid": false,
+                "setNext": false,
+                "useApproval": false,
+                "sxqVerified": true,
+                "remove": false,
+                "status": "WAITING"
+            }
+        ],
+        "contractStatus": "ORIGINAL",
+        "rowAddTimeMS": 1585191495000,
+        "signSequence": false,
+        "signatoryAddPassword": true,
+        "signUrl": "https://mock.sxqian.com/sxq-web/?contractId=1046573",
+        "showSnapshot": false,
+        "contractId": 1046573,
+        "contractName": "两人签约",
+        "rowAddTime": "2020-03-26 10:58:15",
+        "notaryUrl": "https://mock.sxqian.com/anon/static/data-query.htm?router=true&storeId=1046573"
+    },
+    "code": 200
+}
+```
+
+#### *请求失败*
+```
+{
+    "success": false,
+    "message": "错误原因",
+}
+```
+
+#### *返回参数*
+
+|字段|类型|空|默认|注释|
+|:----    |:-------    |:--- |---|------      |
+|success    |bool     |否 |  | true-成功，false-失败  |
+|message |string |否 |    |   描述  |
+|data.contractId |long |否 |    |   签约创建后的编号，可调用 [下载文件接口](#下载文件)，下载合同  |
+|data.contractName |string |否 |    |   签约名称  |
+|data.signUrl |string |否 |    |   签约链接  |
+|data.contractStatus |string |否 |    |   签约合同的状态，定义请参见：[SxqConst.cs](./SxqSDK/SxqCore/Bean/Contract/SxqConst.cs)   |
+|data.notaryUrl |string |否 |    |   存证过程链接  |
+|data.snapshotUrl |string |否 |    |   快照访问链接  |
+|data.createTime |string |否 |    |   创建时间(yyyy-MM-dd HH:mm:ss)  |
+|data.signatories |List |否 |    |   签约人对象: [SignatoryRs.cs](./SxqSDK/SxqCore/Bean/Response/SignatoryRs.cs) |
+
 #### *示例代码*
-请参见 [Program.cs#FetchSignUrl](./SxqApiSample/Program.cs)
+请参见 [Program.cs#QueryContract](./SxqApiSample/Program.cs)

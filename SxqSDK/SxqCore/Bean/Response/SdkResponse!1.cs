@@ -1,6 +1,7 @@
 ﻿namespace SxqCore.Bean.Response
 {
     using System;
+    using SxqCore.Tools;
 
     public class SdkResponse<T>
     {
@@ -57,6 +58,11 @@
             }
         }
 
+
+        public override string ToString()
+        {
+            return HttpJsonConvert.BeanToString(this);
+        }
     }
 }
 

@@ -56,6 +56,18 @@
             }
         }
 
+        static string TIME_DISPLAY_FORMAT = "yyyy/MM/dd HH:mm:ss:ffff";
+        /// <summary>
+        /// 将毫秒的时间串格式化
+        /// </summary>
+        /// <returns>格式化后的时间字符串</returns>
+        public static string ParseTimeMS(long timeMS)
+        {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = startTime.AddMilliseconds(timeMS);
+            return dt.ToString(TIME_DISPLAY_FORMAT);
+        }
+
     }
 
 }

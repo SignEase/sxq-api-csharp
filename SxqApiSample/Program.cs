@@ -198,7 +198,7 @@ namespace SxqApiSample
         {
             BaseSample baseSample = new BaseSample();
             SdkResponse<QueryContractResult> rs = baseSample.QueryContract(GetOrCreateClient(), contractId.ToString());
-            //TODO print detail of the QueryContractResult
+            Console.WriteLine("Query contract result is: {0}", rs.ToString());
             Console.WriteLine("Call QueryContract api finished");
         }
 
@@ -236,8 +236,9 @@ namespace SxqApiSample
 
         static void Main(string[] args)
         {
+
             //Ping();
-            //Download(1046571L);
+            //Download(1046571);
 
             //QuickSignContract(CASE_TWO_PEOPLE_SIGN);
             //QuickSignContract(CASE_COMPANY_AND_PERSON_SIGN);
@@ -251,8 +252,8 @@ namespace SxqApiSample
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
 
-            FetchSignUrl(1046573L);
-            //QueryContract(1046573L);
+            //FetchSignUrl(1046573);
+            //QueryContract(1046573);
 
             //CallBackListener();
         }

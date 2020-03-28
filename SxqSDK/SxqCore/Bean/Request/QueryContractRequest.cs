@@ -17,7 +17,7 @@
 
         public HttpParamers GetHttpParamers()
         {
-            HttpParamers paramers = HttpParamers.GetParamers();
+            HttpParamers paramers = HttpParamers.PostParamers();
             paramers.AddParamer("contractId", this.contractId);
             return paramers;
         }

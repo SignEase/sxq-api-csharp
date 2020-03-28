@@ -1,5 +1,6 @@
 namespace SxqCore
 {
+    using System;
     using SxqClient.Http;
 
     class Program

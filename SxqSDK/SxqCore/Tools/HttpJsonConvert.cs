@@ -1,6 +1,7 @@
 ﻿namespace SxqCore.Tools
 {
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json.Serialization;
     using SxqCore.Bean.Response;
     using System;
@@ -66,6 +67,13 @@
                 NullValueHandling = NullValueHandling.Ignore
             };
             return JsonConvert.SerializeObject(value, Formatting.Indented, settings);
+        }
+
+        public static string BeanToString<T>(T bean)
+        {
+            JObject jobject = new JObject();
+            jobject = JObject.FromObject(bean);
+            return jobject.ToString();
         }
     }
 }
