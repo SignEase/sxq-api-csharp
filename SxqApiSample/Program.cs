@@ -155,27 +155,27 @@ namespace SxqApiSample
         /// </param>
         static private void SignContract(int signType)
         {
-            SignatorySample sgnatorySample = new SignatorySample();
+            SignatorySample signatorySample = new SignatorySample();
             string signUrl = null;
             switch (signType)
             {
                 case CASE_TWO_PEOPLE_SIGN:
-                    signUrl = sgnatorySample.TwoPeopleSign(GetOrCreateClient());
+                    signUrl = signatorySample.TwoPeopleSign(GetOrCreateClient());
                     break;
                 case CASE_COMPANY_AND_PERSON_SIGN:
-                    signUrl = sgnatorySample.CompanyAndPersonSign(GetOrCreateClient());
+                    signUrl = signatorySample.CompanyAndPersonSign(GetOrCreateClient());
                     break;
                 case CASE_TWO_COMPANY_SIGN:
-                    signUrl = sgnatorySample.TwoCompanySign(GetOrCreateClient());
+                    signUrl = signatorySample.TwoCompanySign(GetOrCreateClient());
                     break;
                 case CASE_MULTIPLE_PEOPLE_SIGN:
-                    signUrl = sgnatorySample.MultiplePeopleSign(GetOrCreateClient());
+                    signUrl = signatorySample.MultiplePeopleSign(GetOrCreateClient());
                     break;
                 case CASE_MULTIPLE_PARTIES_SIGN:
-                    signUrl = sgnatorySample.MultiplePartiesSign(GetOrCreateClient());
+                    signUrl = signatorySample.MultiplePartiesSign(GetOrCreateClient());
                     break;
                 case CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME:
-                    signUrl = sgnatorySample.TwoPeopleSignAndSetExpireTime(GetOrCreateClient());
+                    signUrl = signatorySample.TwoPeopleSignAndSetExpireTime(GetOrCreateClient());
                     break;
                 default:
                     break;
