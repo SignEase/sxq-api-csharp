@@ -64,7 +64,11 @@
 		private string sealSn;
 		/** ***** **/
 
-        /** 扩展字段 
+		/** 扩展字段 **/
+		//最后失效时间，格式为时间戳对应的毫秒数
+		private long validTimeStamp = -1;
+
+		/** 暂未开放
 		private long signatoryId;
 		// 待签约文件存储ID
 		private long storeId;
@@ -323,6 +327,17 @@
 			set
 			{
 				this.sealSn = value;
+			}
+		}
+        public long ValidTimeStamp
+		{
+			get
+			{
+				return this.validTimeStamp;
+			}
+			set
+			{
+				this.validTimeStamp = value;
 			}
 		}
 

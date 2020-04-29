@@ -44,6 +44,10 @@
         /// 强制是否手写签章
         /// </summary>
         private bool handWriting = false;
+        /// <summary>
+        /// 最后失效时间，格式为时间戳对应的毫秒数
+        /// </summary>
+        private long validTimeStamp = -1;
 
         public Contract()
         {
@@ -156,6 +160,18 @@
             set
             {
                 this.handWriting = value;
+            }
+        }
+
+        public long ValidTimeStamp
+        {
+            get
+            {
+                return this.validTimeStamp;
+            }
+            set
+            {
+                this.validTimeStamp = value;
             }
         }
     }

@@ -108,6 +108,15 @@ namespace SxqSDK.SxqCore.Tools
                     parameters.AddParamer("yclSignatoryList[" + i + "].sealSn", signatoryList[i].SealSn);
                 }
 
+                // 合同失效时间设置：合同对象上的'失效时间'对所有签约人都生效；如果签约人上有单独设置失效时间的，则使用签约人设置进行覆盖
+                if (signatoryList[i].ValidTimeStamp != -1)
+                {
+                    parameters.AddParamer("yclSignatoryList[" + i + "].validTimeStamp", signatoryList[i].ValidTimeStamp.ToString());
+                } else if (contract.ValidTimeStamp != -1)
+                {
+                    parameters.AddParamer("yclSignatoryList[" + i + "].validTimeStamp", contract.ValidTimeStamp.ToString());
+                }
+
             }
 
             return parameters;

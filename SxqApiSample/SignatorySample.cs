@@ -572,6 +572,28 @@ namespace SxqApiSample
             return contract;
         }
 
+        /// <summary>
+        /// 甲乙两人签约
+        /// 并设定合同失效时间
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>签约URL-浏览器打开可继续签约</returns>
+        public string TwoPeopleSignAndSetExpireTime(SDKClient client)
+        {
+            Contract contract = ContractOfTwoPeople();
+            // 关闭登录前的合同预览；关闭新建账户的密码设置
+            contract.AllowPreview = SxqConst.PREVIEW_OFF;
+            contract.AllowPwdSetting = SxqConst.PWD_SETTING_OFF;
+            // 设置合同的失效时间（暨多少时间内有效）为：现在开始后的三天内；
+            contract.ValidTimeStamp = SignUtil.GetExpireTimestamp(SignUtil.CurrentMS(), 24*3);
+            // 失效时间也可以单独设置在签约人对象上，签约人对象上的优先级比合同对象上的高，会覆盖合同对象上的失效时间
+            //contract.SignatoryList[0].ValidTimeStamp = SignUtil.GetExpireTimestamp(SignUtil.CurrentMS(), 24 * 7);
+            // 开启个人签约人强制手写签章
+            contract.HandWriting = true;
+
+            /** 签约请求 **/
+            return Process(client, contract);
+        }
 
         /// <summary>
         /// 甲乙两人签约

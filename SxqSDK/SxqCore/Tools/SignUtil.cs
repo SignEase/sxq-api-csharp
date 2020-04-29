@@ -68,6 +68,27 @@
             return dt.ToString(TIME_DISPLAY_FORMAT);
         }
 
+        private static long Jan1st1970Ms = new System.DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
+        /// <summary>
+        /// 获取从1970年1月1日0时起到现在的毫秒数
+        /// </summary>
+        /// <returns>格式化后的时间字符串</returns>
+        public static long CurrentMS()
+        {
+            return (DateTime.UtcNow.Ticks - Jan1st1970Ms) / 10000;
+        }
+
+        /// <summary>
+        /// 根据起始时间和多久以后失效（单位为小时），计算出失效的时间戳
+        /// </summary>
+        /// <param name="timeMS">计算的起始时间</param>
+        /// <param name="expireHours">多久以后失效</param>
+        /// <returns>格式化后的时间字符串</returns>
+        public static long GetExpireTimestamp(long timeMS, int expireHours)
+        {
+            return timeMS + expireHours * 60 * 60 * 1000;
+        }
+
     }
 
 }

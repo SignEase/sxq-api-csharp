@@ -108,6 +108,10 @@ namespace SxqApiSample
         ///  场景：多方签约，每个签约方支持多个签约人
         /// </summary>
         const int CASE_MULTIPLE_PARTIES_SIGN = 4;
+        /// <summary>
+        ///  场景：甲乙两人签约，并设置签约的有效期
+        /// </summary>
+        const int CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME = 5;
 
         /// <summary>
         /// 快捷签约
@@ -169,6 +173,9 @@ namespace SxqApiSample
                     break;
                 case CASE_MULTIPLE_PARTIES_SIGN:
                     signUrl = sgnatorySample.MultiplePartiesSign(GetOrCreateClient());
+                    break;
+                case CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME:
+                    signUrl = sgnatorySample.TwoPeopleSignAndSetExpireTime(GetOrCreateClient());
                     break;
                 default:
                     break;
@@ -236,7 +243,6 @@ namespace SxqApiSample
 
         static void Main(string[] args)
         {
-
             //Ping();
             //Download(1046571);
 
@@ -251,6 +257,7 @@ namespace SxqApiSample
             //SignContract(CASE_TWO_COMPANY_SIGN);
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
+            SignContract(CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME);
 
             //FetchSignUrl(1046573);
             //QueryContract(1046573);
