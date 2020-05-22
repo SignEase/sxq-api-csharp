@@ -32,7 +32,8 @@
                 }
 
                 // return data format
-                if(string.IsNullOrEmpty(responseOneObjString))
+                if(string.IsNullOrEmpty(responseOneObjString)
+                    && value.Contains("storeNo"))
                 {
                     responseOneObjString = "{\"storeNo\":\"" + ResponseUtils.GetResponseString(value, "storeNo") + "\"}";
                 }

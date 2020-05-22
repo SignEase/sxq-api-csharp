@@ -56,6 +56,10 @@
     <Compile Include="SxqClient\Http\CallBackServer.cs" />
     <Compile Include="SxqCore\Bean\Response\QueryContractResult.cs" />
     <Compile Include="SxqCore\Bean\Response\SignatoryRs.cs" />
+    <Compile Include="SxqCore\Bean\Request\RealNameRequest.cs" />
+    <Compile Include="SxqCore\Bean\Contract\RealNameAuth.cs" />
+    <Compile Include="SxqCore\Tools\IdCardUtil.cs" />
+    <Compile Include="SxqCore\Bean\Response\NoCustomResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SxqCore\" />

@@ -135,6 +135,13 @@
                 return "";
             }
             index += str.Length;
+            // null judgement
+            string nullValue = responseTxt.Substring(index, 4);
+            if("null".Equals(nullValue))
+            {
+                return "";
+            }
+
             int num2 = responseTxt.LastIndexOf("},");
             if (num2 < 0)
             {

@@ -7,6 +7,7 @@
         public static string PING = "/api/ping.json";
         public static string DOWNLOAD_CONTRACT = "/api/downloadContract.json";
         public static string QUICK_SIGNATORY = "/api/quickSign.json";
+        public static string REALNAME_AUTH = "/api/realNameCertification.json";
         public static string DRAFT_CONTRACT = "/api/draftContract.json";
         public static string SIGN_CONTRACT = "/api/signContract.json";
         public static string FETCH_SIGN_URL = "/api/fetchSignUrl.json";

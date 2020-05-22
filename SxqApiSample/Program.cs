@@ -1,5 +1,6 @@
 using SxqClient.Http;
 using System;
+using SxqCore.Bean.Contract;
 using SxqCore.Bean.Response;
 
 namespace SxqApiSample
@@ -89,6 +90,41 @@ namespace SxqApiSample
         }
 
         /// <summary>
+        /// 场景：个人用户实名
+        /// </summary>
+        const int CASE_AUTH_PERSON = 0;
+        /// <summary>
+        /// 场景：企业用户实名
+        /// </summary>
+        const int CASE_AUTH_ENTERPRISE = 1;
+
+        /// <summary>
+        /// 快捷签约
+        /// </summary>
+        /// <param name="authCaseType">
+        /// see above CASE definition
+        /// </param>
+        static private void RealName(int authCaseType)
+        {
+            RealNameAuth realNameAuth = null;
+            switch (authCaseType)
+            {
+                case CASE_AUTH_PERSON:
+                    realNameAuth = RealNameAuth.PersonRealNameAuth("试试", "500235199412169110", "18700001111");
+                    break;
+                case CASE_AUTH_ENTERPRISE:
+                    realNameAuth = RealNameAuth.EnterpriseRealNameAuth("慢慢", "500235199412169110", "18711112222", "91500000MA5UCYU7ZY", "慢慢科技", SxqConst.ID_BUSINESS_LICENCE);
+                    break;
+                default:
+                    break;
+            }
+            BaseSample baseSample = new BaseSample();
+            String result = baseSample.RealName(GetOrCreateClient(), realNameAuth);
+            Console.WriteLine("Call RealNameAuth api finished: " + result.ToString());
+        }
+
+
+        /// <summary>
         /// 场景：甲乙两人签约
         /// </summary>
         const int CASE_TWO_PEOPLE_SIGN = 0;
@@ -116,14 +152,14 @@ namespace SxqApiSample
         /// <summary>
         /// 快捷签约
         /// </summary>
-        /// <param name="caseType">
+        /// <param name="signCaseType">
         /// see above CASE definition
         /// </param>
-        static private void QuickSignContract(int signType)
+        static private void QuickSignContract(int signCaseType)
         {
             QuickSignatorySample quickSignatorySample = new QuickSignatorySample();
 
-            switch (signType)
+            switch (signCaseType)
             {
                 case CASE_TWO_PEOPLE_SIGN:
                     quickSignatorySample.TwoPeopleSign(GetOrCreateClient());
@@ -245,6 +281,7 @@ namespace SxqApiSample
         {
             //Ping();
             //Download(1046571);
+            RealName(CASE_AUTH_PERSON);
 
             //QuickSignContract(CASE_TWO_PEOPLE_SIGN);
             //QuickSignContract(CASE_COMPANY_AND_PERSON_SIGN);
@@ -257,7 +294,7 @@ namespace SxqApiSample
             //SignContract(CASE_TWO_COMPANY_SIGN);
             //SignContract(CASE_MULTIPLE_PEOPLE_SIGN);
             //SignContract(CASE_MULTIPLE_PARTIES_SIGN);
-            SignContract(CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME);
+            //SignContract(CASE_TWO_PEOPLE_SIGN_AND_SET_EXPIRE_TIME);
 
             //FetchSignUrl(1046573);
             //QueryContract(1046573);

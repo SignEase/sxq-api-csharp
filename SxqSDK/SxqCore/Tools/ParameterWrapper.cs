@@ -43,7 +43,7 @@ namespace SxqSDK.SxqCore.Tools
                 parameters.AddParamer("yclSignatoryList[" + i + "].groupName", signatoryList[i].GroupName);
                 parameters.AddParamer("yclSignatoryList[" + i + "].groupChar", signatoryList[i].GroupChar);
                 // 强制手写签章(针对签约者是个人)
-                if(contract.HandWriting && signatoryList[i].IsPersonal())
+                if (contract.HandWriting && signatoryList[i].IsPersonal())
                 {
                     parameters.AddParamer("yclSignatoryList[" + i + "].sealType", SxqConst.SEAL_HANDWRITING);
                 }
@@ -112,7 +112,8 @@ namespace SxqSDK.SxqCore.Tools
                 if (signatoryList[i].ValidTimeStamp != -1)
                 {
                     parameters.AddParamer("yclSignatoryList[" + i + "].validTimeStamp", signatoryList[i].ValidTimeStamp.ToString());
-                } else if (contract.ValidTimeStamp != -1)
+                }
+                else if (contract.ValidTimeStamp != -1)
                 {
                     parameters.AddParamer("yclSignatoryList[" + i + "].validTimeStamp", contract.ValidTimeStamp.ToString());
                 }
@@ -121,5 +122,44 @@ namespace SxqSDK.SxqCore.Tools
 
             return parameters;
         }
+
+
+        public static HttpParamers WrapRealNameAuth(RealNameAuth realNameAuth)
+        {
+            realNameAuth.Check();
+
+            HttpParamers parameters = HttpParamers.PostParamers();
+         
+            parameters.AddParamer("certNo", realNameAuth.CertNo);
+            parameters.AddParamer("realName", realNameAuth.RealName);
+
+            if (!string.IsNullOrEmpty(realNameAuth.EnterpriseRealName))
+            {
+                parameters.AddParamer("enterpriseRealName", realNameAuth.EnterpriseRealName);
+            }
+            if (!string.IsNullOrEmpty(realNameAuth.EnterpriseCertType))
+            {
+                parameters.AddParamer("enterpriseCertType", realNameAuth.EnterpriseCertType);
+            }
+            if (!string.IsNullOrEmpty(realNameAuth.EnterpriseCertNo))
+            {
+                parameters.AddParamer("enterpriseCertNo", realNameAuth.EnterpriseCertNo);
+            }
+            if (!string.IsNullOrEmpty(realNameAuth.Mobile))
+            {
+                parameters.AddParamer("mobile", realNameAuth.Mobile);
+            }
+            if (!string.IsNullOrEmpty(realNameAuth.Mail))
+            {
+                parameters.AddParamer("mail", realNameAuth.Mail);
+            }
+            parameters.AddParamer("type", realNameAuth.Type);
+
+
+            return parameters;
+        }
+
+
+
     }
 }

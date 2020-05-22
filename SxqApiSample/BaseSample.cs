@@ -1,6 +1,7 @@
 using SxqClient.Http;
 using SxqCore.Bean.Request;
 using SxqCore.Bean.Response;
+using SxqCore.Bean.Contract;
 using SxqCore.Tools;
 using System;
 using System.IO;
@@ -116,6 +117,33 @@ namespace SxqApiSample
                 throw new Exception("FetchSignUrl失败，失败原因： " + sdkResponse.Message);
             }
             return sdkResponse.Result.SignUrl;
+        }
+
+        /// <summary>
+        /// 用户实名认证
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="realNameAuth">实名对象</param>
+        /// <returns></returns>
+        public string RealName(SDKClient client, RealNameAuth realNameAuth)
+        {
+            string response = null;
+            try
+            {
+                RealNameRequest request = new RealNameRequest(realNameAuth);
+                response = client.Service(request);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("RealNameAuth失败,失败原因： " + e.Message);
+            }
+
+            SdkResponse<NoCustomResult> sdkResponse = HttpJsonConvert.DeserializeResponse<NoCustomResult>(response);
+            if (!sdkResponse.Success)
+            {
+                throw new Exception("RealNameAuth失败，失败原因： " + sdkResponse.Message);
+            }
+            return sdkResponse.Success.ToString();
         }
 
 
