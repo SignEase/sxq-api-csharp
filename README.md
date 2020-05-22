@@ -84,6 +84,65 @@ Cookie: SUPSESSIONID=C1988C2DC3D205A5BE2CC6820749D67F
 
 ---
 
+### 实名认证
+
+给用户（个人、企业）进行注册并且实名认证
+
+#### *具体请求*
+```
+/api/realNameCertification.json
+```
+
+#### *请求示例*
+```
+https://mock.sxqian.com/api/realNameCertification.json?realName=张三
+&certNo=4355343544353ssss54
+&mobile=13511111111
+&type=GR
+```
+
+#### *参数*
+```
+|字段                   |       类型|可否空  |默认    |注释              |
+|:----                 |:-------   |:---   |---    |------             |
+|realName              |String     |否     |       | [企业法人]姓名    |
+|certNo                |String     |否     |       | [法人]身份证号    |
+|enterpriseRealName    |String     |是     |       | 企业名称         |
+|enterpriseCertNo      |String     |是     |       |  企业证书号      |
+|enterpriseCertType    |String     |是     |       | 企业证书类型: BUSINESS_LICENCE-营业执照, INSTITUTION_CODE-组织机构代码证 |
+|mobile                |String     |是     |       |  [法人]手机号    |
+|mail                  |String     |是     |       |  [法人]邮箱      |
+|type                  |String     |否     |       |  个人用户("GR") | 企业用户 ("JG") |
+```
+
+#### *请求成功*
+```
+{
+success:"true", 
+message:"实名认证成功"
+}
+```
+
+#### *请求失败*
+```
+{
+success:"false",
+message:"invalid idcard"
+}
+```
+
+#### *返回参数说明*
+|字段          |      注释
+|:----         |:-------   
+|success      |是否成功，true为成功，false为失败
+|message      |返回信息
+
+#### *示例代码*
+```
+请参见 [Program.cs#RealName](./SxqApiSample/Program.cs)
+```
+---
+
 ### 电子签约
 
 签约流程：起草签约 -> 获取返回的签约URL -> 浏览器打开URL继续签约
