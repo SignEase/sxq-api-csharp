@@ -67,7 +67,7 @@
             }
 
             if(!RealNameAuth.AUTH_TYPE_PERSONAL.Equals(this.type)
-                && RealNameAuth.AUTH_TYPE_ENTERPRISE.Equals(this.type))
+                && !RealNameAuth.AUTH_TYPE_ENTERPRISE.Equals(this.type))
             {
                 throw new Exception("未知的实名认证类型");
             }
