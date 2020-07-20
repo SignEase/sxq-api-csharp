@@ -146,6 +146,37 @@ namespace SxqApiSample
             return sdkResponse.Success.ToString();
         }
 
+        /// <summary>
+        /// 企业用户重新认证企业
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="realNameAuth">认证对象</param>
+        /// <returns></returns>
+        public string EnterpriseReCertification(SDKClient client, RealNameAuth realNameAuth)
+        {
+            if (!RealNameAuth.AUTH_TYPE_ENTERPRISE.Equals(realNameAuth.type))
+            {
+                throw new Exception("EnterpriseReCertification失败, 失败原因： 用户类型必须为 RealNameAuth.AUTH_TYPE_ENTERPRISE");
+            }
+            string response = null;
+            try
+            {
+                RecertificationRequest request = new RecertificationRequest(realNameAuth);
+                response = client.Service(request);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("EnterpriseReCertification失败,失败原因： " + e.Message);
+            }
+
+            SdkResponse<NoCustomResult> sdkResponse = HttpJsonConvert.DeserializeResponse<NoCustomResult>(response);
+            if (!sdkResponse.Success)
+            {
+                throw new Exception("EnterpriseReCertification失败，失败原因： " + sdkResponse.Message);
+            }
+            return sdkResponse.Success.ToString();
+        }
+
 
         public BaseSample() { }
     }

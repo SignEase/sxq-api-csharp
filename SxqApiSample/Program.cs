@@ -9,7 +9,7 @@ namespace SxqApiSample
     {
 
         /** -开始联调前，请设置以下参数- **/
-        private static int env = ENV_MOCK; 
+        private static int env = ENV_MOCK;
         public static string accessSecret = "";
         public static string accessToken = "";
         // 如果不需要回调，请将以下的callBackUrl设置为null；
@@ -27,11 +27,11 @@ namespace SxqApiSample
             // 请使用你注册账户的Secrect; 否则会使用以下测试环境默认Secret
             accessSecret = string.IsNullOrEmpty(accessSecret) ? "3daca3b13ef04e7f8a751d74c8318a1f" : accessSecret;
             // 请使用你注册账户的Token; 否则会使用以下测试环境默认Token
-            accessToken = string.IsNullOrEmpty(accessToken) ? "20200303093507658157" : accessToken; 
+            accessToken = string.IsNullOrEmpty(accessToken) ? "20200303093507658157" : accessToken;
             // 指定访问的服务器
             string serverUrl = ParseServer(env);
-            
-            return client = new SDKClient(accessToken, accessSecret, serverUrl, callBackUrl); 
+
+            return client = new SDKClient(accessToken, accessSecret, serverUrl, callBackUrl);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace SxqApiSample
         const int CASE_AUTH_ENTERPRISE = 1;
 
         /// <summary>
-        /// 快捷签约
+        /// 个人|企业 实名认证
         /// </summary>
         /// <param name="authCaseType">
         /// see above CASE definition
@@ -121,6 +121,21 @@ namespace SxqApiSample
             BaseSample baseSample = new BaseSample();
             String result = baseSample.RealName(GetOrCreateClient(), realNameAuth);
             Console.WriteLine("Call RealNameAuth api finished: " + result.ToString());
+        }
+
+
+        /// <summary>
+        /// 企业实名认证修改
+        /// </summary>
+        /// <param name="authCaseType">
+        /// see above CASE definition
+        /// </param>
+        static private void EnterpriseReAuth()
+        {
+            RealNameAuth realNameAuth = realNameAuth = RealNameAuth.EnterpriseRealNameAuth("慢慢", "500235199412169110", "18711112222", "91500000MA5UCYU7ZY", "慢慢科技", SxqConst.ID_BUSINESS_LICENCE);
+            BaseSample baseSample = new BaseSample();
+            String result = baseSample.EnterpriseReCertification(GetOrCreateClient(), realNameAuth);
+            Console.WriteLine("Call enterpriseReCertification api finished: " + result.ToString());
         }
 
 

@@ -8,6 +8,7 @@
         public static string DOWNLOAD_CONTRACT = "/api/downloadContract.json";
         public static string QUICK_SIGNATORY = "/api/quickSign.json";
         public static string REALNAME_AUTH = "/api/realNameCertification.json";
+        public static string ENTERPRISE_RECERTIFICATION = "/api/enterprise/recertification.json";
         public static string DRAFT_CONTRACT = "/api/draftContract.json";
         public static string SIGN_CONTRACT = "/api/signContract.json";
         public static string FETCH_SIGN_URL = "/api/fetchSignUrl.json";
@@ -19,7 +20,7 @@
         public static string CREATE_CONTRACT_DRAFT = "/v2/contract/draft";
         public static string ADD_DOCUMENT_BY_FILE = "/v2/document/addbyfile";
         public static string ADD_DOCUMENT_BY_TEMPLATE = "/v2/document/addbytemplate";
-        public static string ADD_SIGNATORY = "/v2/signatory/add";
+        public static string ADD_SIGNATORY = "/v2/signatory/add";ENTERPRISE
         public static string SEND_CONTRACT = "/v2/contract/send";
         public static string COMPANY_SIGN = "/v2/contract/companysign";
         public static string LEGAL_PERSON_SIGN = "/v2/contract/legalpersonsign";
